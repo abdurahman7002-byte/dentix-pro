@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dentix Pro</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #020617;
+      overflow-x: hidden;
+      color: white;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      background: rgba(0, 255, 255, 0.12);
+      border-radius: 50%;
+      filter: blur(120px);
+      top: -200px;
+      left: -100px;
+      animation: float 8s ease-in-out infinite;
+      z-index: -1;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      background: rgba(37, 99, 235, 0.12);
+      border-radius: 50%;
+      filter: blur(120px);
+      bottom: -200px;
+      right: -100px;
+      animation: float2 10s ease-in-out infinite;
+      z-index: -1;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(40px);
+      }
+    }
+
+    @keyframes float2 {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-40px);
+      }
+    }
+
+    .container {
+      width: 92%;
+      max-width: 1450px;
+      margin: auto;
+      padding: 30px 0;
+    }
+
+    .glass {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 35px;
+      border-radius: 30px;
+      position: sticky;
+      top: 20px;
+      z-index: 999;
+      margin-bottom: 40px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .logo-icon {
+      width: 65px;
+      height: 65px;
+      border-radius: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #22d3ee, #2563eb);
+      font-size: 30px;
+      box-shadow: 0 0 30px rgba(34,211,238,0.4);
+    }
+
+    .logo h1 {
+      font-size: 28px;
+      font-weight: 800;
+    }
+
+    .logo p {
+      color: #94a3b8;
+      font-size: 14px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      color: #cbd5e1;
+      text-decoration: none;
+      padding: 12px 20px;
+      border-radius: 16px;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      background: rgba(255,255,255,0.08);
+      color: white;
+    }
+
+    .btn {
+      border: none;
+      cursor: pointer;
+      transition: 0.35s;
+      font-weight: 700;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #22d3ee, #2563eb);
+      color: white;
+      padding: 16px 28px;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(34,211,238,0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-4px) scale(1.03);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 40px;
+      align-items: center;
+      margin-bottom: 60px;
+    }
+
+    .hero h2 {
+      font-size: 90px;
+      line-height: 0.95;
+      font-weight: 900;
+      margin-bottom: 25px;
+    }
+
+    .hero span {
+      background: linear-gradient(to right, #67e8f9, #2563eb);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      color: #94a3b8;
+      line-height: 1.8;
+      font-size: 20px;
+      margin-bottom: 35px;
+      max-width: 700px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: white;
+      padding: 16px 28px;
+      border-radius: 20px;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.12);
+    }
+
+    .cards {
+      position: relative;
+      height: 500px;
+    }
+
+    .card {
+      position: absolute;
+      border-radius: 35px;
+      padding: 30px;
+    }
+
+    .card1 {
+      width: 320px;
+      top: 0;
+      right: 0;
+    }
+
+    .card2 {
+      width: 360px;
+      bottom: 0;
+      left: 0;
+    }
+
+    .card h3 {
+      font-size: 55px;
+      margin-top: 15px;
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 35px;
+    }
+
+    .panel {
+      border-radius: 40px;
+      padding: 40px;
+    }
+
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 35px;
+    }
+
+    .panel-header h2 {
+      font-size: 42px;
+      font-weight: 900;
+    }
+
+    .panel-header p {
+      color: #94a3b8;
+      margin-top: 8px;
+    }
+
+    .icon-box {
+      width: 100px;
+      height: 100px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, #22d3ee, #1d4ed8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 45px;
+      box-shadow: 0 0 35px rgba(34,211,238,0.4);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .input-group label {
+      margin-bottom: 12px;
+      color: #cbd5e1;
+      font-weight: 600;
+    }
+
+    .input-group input,
+    .input-group select,
+    .input-group textarea {
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      padding: 18px 22px;
+      color: white;
+      outline: none;
+      transition: 0.3s;
+      font-size: 15px;
+    }
+
+    .input-group input:focus,
+    .input-group select:focus,
+    .input-group textarea:focus {
+      border-color: #22d3ee;
+      box-shadow: 0 0 0 5px rgba(34,211,238,0.12);
+      transform: translateY(-2px);
+    }
+
+    textarea {
+      resize: none;
+    }
+
+    .full {
+      grid-column: span 2;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 20px;
+      margin-top: 35px;
+      flex-wrap: wrap;
+    }
+
+    .upload-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin: 20px 0;
+    }
+
+    .upload-box {
+      border: 2px dashed rgba(34,211,238,0.3);
+      border-radius: 28px;
+      padding: 45px 20px;
+      text-align: center;
+      background: rgba(34,211,238,0.05);
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .upload-box:hover {
+      transform: translateY(-6px) scale(1.02);
+      background: rgba(34,211,238,0.1);
+    }
+
+    .upload-box .emoji {
+      font-size: 60px;
+      margin-bottom: 15px;
+    }
+
+    .particles span {
+      position: fixed;
+      width: 4px;
+      height: 4px;
+      background: rgba(34,211,238,0.35);
+      border-radius: 50%;
+      animation: particles 10s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes particles {
+      from {
+        transform: translateY(100vh);
+      }
+      to {
+        transform: translateY(-100vh);
+      }
+    }
+
+    @media(max-width: 1100px) {
+      .hero,
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cards {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .card {
+        position: relative;
+        width: 100%;
+      }
+
+      .hero h2 {
+        font-size: 65px;
+      }
+    }
+
+    @media(max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .full {
+        grid-column: span 1;
+      }
+
+      .hero h2 {
+        font-size: 50px;
+      }
+
+      .panel {
+        padding: 25px;
+      }
+
+      .upload-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="particles" id="particles"></div>
+
+  <div class="container">
+
+    <div class="navbar glass">
+      <div class="logo">
+        <div class="logo-icon">🦷</div>
+        <div>
+          <h1>Dentix Pro</h1>
+          <p>Smart Dental Management</p>
+        </div>
+      </div>
+
+      <div class="nav-links">
+        <a href="#">Dashboard</a>
+        <a href="#">Patients</a>
+        <a href="#">Appointments</a>
+        <a href="#">Reports</a>
+      </div>
+
+      <button class="btn btn-primary">+ Add Patient</button>
+    </div>
+
+    <section class="hero">
+      <div>
+        <h2>
+          Modern <br>
+          <span>Dental UI</span>
+        </h2>
+
+        <p>
+          Futuristic dental clinic management system with treatment records,
+          clinical photos, radiographs, payments, and elegant patient files.
+        </p>
+
+        <div class="hero-buttons">
+          <button class="btn btn-primary">Start Managing</button>
+          <button class="btn btn-secondary">View Demo</button>
+        </div>
+      </div>
+
+      <div class="cards">
+        <div class="card card1 glass">
+          <p>Total Patients</p>
+          <h3>1,284</h3>
+        </div>
+
+        <div class="card card2 glass">
+          <p>Monthly Revenue</p>
+          <h3>125K EGP</h3>
+        </div>
+      </div>
+    </section>
+
+    <section class="main-grid">
+
+      <div class="panel glass">
+
+        <div class="panel-header">
+          <div>
+            <h2>New Patient</h2>
+            <p>Create digital patient profile</p>
+          </div>
+
+          <div class="icon-box">🧬</div>
+        </div>
+
+        <div class="form-grid">
+
+          <div class="input-group">
+            <label>Name</label>
+            <input type="text" placeholder="Patient Name">
+          </div>
+
+          <div class="input-group">
+            <label>Phone</label>
+            <input type="text" placeholder="010xxxxxxxx">
+          </div>
+
+          <div class="input-group">
+            <label>Gender</label>
+            <select>
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label>Birth Date</label>
+            <input type="date">
+          </div>
+
+          <div class="input-group full">
+            <label>Address</label>
+            <input type="text" placeholder="Patient Address">
+          </div>
+
+          <div class="input-group full">
+            <label>Medical History</label>
+            <textarea rows="4" placeholder="Medical conditions..."></textarea>
+          </div>
+
+          <div class="input-group full">
+            <label>Dental History</label>
+            <textarea rows="4" placeholder="RCT, implants, extraction..."></textarea>
+          </div>
+
+          <div class="input-group">
+            <label>Paid</label>
+            <input type="number" placeholder="0 EGP">
+          </div>
+
+          <div class="input-group">
+            <label>Rest</label>
+            <input type="number" placeholder="0 EGP">
+          </div>
+
+        </div>
+
+        <div class="action-buttons">
+        <button id="savePatientBtn" class="btn btn-primary">
+  Save Patient
+</button>
+          <button class="btn btn-secondary">Open File</button>
+        </div>
+
+      </div>
+
+      <div class="panel glass">
+
+        <div class="panel-header">
+          <div>
+            <h2>Treatment Log</h2>
+            <p>Patient session</p>
+          </div>
+
+          <div style="font-size:50px;">🩻</div>
+        </div>
+
+        <div class="input-group">
+          <label>Visit Date</label>
+          <input type="date">
+        </div>
+
+        <div class="input-group" style="margin-top:20px;">
+          <label>Treatment Details</label>
+          <textarea rows="6" placeholder="Describe procedures..."></textarea>
+        </div>
+
+        <div class="upload-grid">
+
+          <div class="upload-box">
+            <div class="emoji">📸</div>
+            <h3>Clinical Photos</h3>
+          </div>
+
+          <div class="upload-box">
+            <div class="emoji">🩻</div>
+            <h3>X-Rays</h3>
+          </div>
+
+        </div>
+
+        <button class="btn btn-primary" style="width:100%; margin-top:20px;">
+          Save Session
+        </button>
+
+      </div>
+      
+    </section>
+
+<button onclick="openPatientFile('${patientId}')">
+  Open File
+</button>
+    
+<section class="panel glass" style="margin-top:40px;">
+
+  <div class="panel-header">
+    <div>
+      <h2>Patients List</h2>
+      <p>All saved patients</p>
+    </div>
+  </div>
+
+  <div id="patientsContainer"></div>
+
+</section>
+    
+  </div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAKELj-slS6fzfhsYlwGf3UkdZXbTmwS2c",
+  authDomain: "dentix-pro.firebaseapp.com",
+  projectId: "dentix-pro",
+  storageBucket: "dentix-pro.firebasestorage.app",
+  messagingSenderId: "118502821589",
+  appId: "1:118502821589:web:47b15018828bb927f65c5c",
+  measurementId: "G-WYB2B1KVMB"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const saveBtn = document.getElementById('savePatientBtn');
+
+async function loadPatients() {
+
+  const patientsContainer =
+    document.getElementById('patientsContainer');
+
+  if (!patientsContainer) return;
+
+  patientsContainer.innerHTML = '';
+
+  const querySnapshot =
+    await getDocs(collection(db, "patients"));
+
+  querySnapshot.forEach((docSnap) => {
+
+    const patient = docSnap.data();
+const patientId = docSnap.id;
+
+    patientsContainer.innerHTML += `
+    
+      <div style="
+        background: rgba(255,255,255,0.05);
+        padding:20px;
+        border-radius:20px;
+        margin-bottom:15px;
+        border:1px solid rgba(255,255,255,0.08);
+      ">
+
+        <h3 style="margin-bottom:10px;">
+          ${patient.name}
+        </h3>
+
+        <p>📞 ${patient.phone}</p>
+        <p>⚧ ${patient.gender}</p>
+        <p>💰 Paid: ${patient.paid}</p>
+        <p>💳 Rest: ${patient.rest}</p>
+
+      </div>
+
+    `;
+  });
+
+}
+
+loadPatients();
+
+saveBtn.addEventListener('click', async () => {
+
+  const inputs = document.querySelectorAll('input');
+  const textareas = document.querySelectorAll('textarea');
+  const selects = document.querySelectorAll('select');
+
+  const patientData = {
+
+    name: inputs[0].value,
+    phone: inputs[1].value,
+    gender: selects[0].value,
+    birthDate: inputs[2].value,
+    address: inputs[3].value,
+    medicalHistory: textareas[0].value,
+    dentalHistory: textareas[1].value,
+    paid: inputs[4].value,
+    rest: inputs[5].value,
+    createdAt: new Date()
+
+  };
+
+  try {
+
+    await addDoc(collection(db, "patients"), patientData);
+
+    alert("Patient Saved Successfully ✅");
+
+    loadPatients();
+
+  } catch (error) {
+
+    console.error(error);
+
+    alert("Error Saving Patient ❌");
+
+  }
+
+});
+window.openPatientFile = function(id) {
+
+  window.location.href =
+    `patient.html?id=${id}`;
+
+}
+</script>
+  
+</body>
+</html>
