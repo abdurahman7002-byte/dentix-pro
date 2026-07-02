@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Doctors</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    min-height:100vh;
+
+    padding:25px;
+
+    background:
+    radial-gradient(circle at top left,#2563eb22,transparent 30%),
+    radial-gradient(circle at bottom right,#06b6d422,transparent 30%),
+    linear-gradient(135deg,#020617,#0f172a,#111827);
+
+    color:white;
+}
+body{
+    min-height:100vh;
+    padding:25px;
+    padding-bottom:110px;
+
+    display:flex;
+    flex-direction:column;
+}
+
+.page-title{
+    text-align:center;
+    font-size:34px;
+    font-weight:800;
+    margin-bottom:30px;
+    letter-spacing:1px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+    color:#fff;
+    text-shadow:0 0 25px rgba(59,130,246,.5);
+}
+/* =========================
+CARD
+========================= */
+
+.card{
+
+     width:100%;
+    max-width:900px;
+    margin:0 auto 25px auto;
+
+    background:rgba(30,41,59,.75);
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:24px;
+    padding:28px;
+
+    box-shadow:
+    0 10px 35px rgba(0,0,0,.35),
+    inset 0 1px 0 rgba(255,255,255,.05);
+
+    transition:.3s;
+}
+
+.card:hover{
+
+    transform:translateY(-3px);
+}
+
+/* =========================
+HEADINGS
+========================= */
+
+h2{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-bottom:20px;
+
+    font-size:28px;
+
+    font-weight:800;
+
+    color:white;
+}
+
+h2 i{
+
+    color:#38bdf8;
+}
+
+/* =========================
+INPUTS
+========================= */
+
+input{
+
+    width:100%;
+
+    padding:15px 18px;
+
+    margin-bottom:12px;
+
+    border-radius:16px;
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    background:
+    rgba(15,23,42,.8);
+
+    color:white;
+
+    outline:none;
+
+    font-size:14px;
+
+    transition:.3s;
+}
+
+input::placeholder{
+
+    color:#94a3b8;
+}
+
+input:focus{
+
+    border-color:#38bdf8;
+
+    box-shadow:
+    0 0 0 4px rgba(56,189,248,.15);
+
+    transform:translateY(-1px);
+}
+
+/* =========================
+BUTTONS
+========================= */
+
+button{
+
+    border:none;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.primary-btn{
+
+    width:100%;
+
+    padding:15px;
+
+    border-radius:16px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #06b6d4,
+        #3b82f6
+    );
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    box-shadow:
+    0 12px 25px rgba(59,130,246,.25);
+}
+
+.primary-btn:hover{
+
+    transform:
+    translateY(-3px);
+
+    box-shadow:
+    0 18px 35px rgba(59,130,246,.35);
+}
+
+/* =========================
+DOCTOR CARD
+========================= */
+
+.doctor-card{
+
+    background:
+    linear-gradient(
+        145deg,
+        rgba(30,41,59,.95),
+        rgba(15,23,42,.95)
+    );
+
+    border:
+    1px solid rgba(255,255,255,.06);
+
+    border-radius:22px;
+
+    padding:20px;
+
+    margin-bottom:15px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    transition:.35s;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.doctor-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-50px;
+    right:-50px;
+
+    width:120px;
+    height:120px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(59,130,246,.15),
+        transparent
+    );
+}
+
+.doctor-card:hover{
+
+    transform:
+    translateY(-5px);
+
+    border-color:#38bdf8;
+
+    box-shadow:
+    0 18px 35px rgba(56,189,248,.12);
+}
+
+.doctor-name{
+
+    font-size:20px;
+
+    font-weight:800;
+
+    color:white;
+
+    margin-bottom:6px;
+}
+
+.doctor-special{
+
+    display:inline-block;
+
+    background:
+    rgba(56,189,248,.12);
+
+    color:#7dd3fc;
+
+    padding:6px 12px;
+
+    border-radius:999px;
+
+    font-size:12px;
+
+    font-weight:600;
+}
+
+/* =========================
+ACTIONS
+========================= */
+
+.actions{
+
+    display:flex;
+
+    gap:10px;
+}
+
+.open-btn{
+
+    background:
+    linear-gradient(
+        135deg,
+        #10b981,
+        #22c55e
+    );
+
+    color:white;
+
+    padding:11px 16px;
+
+    border-radius:12px;
+
+    font-weight:700;
+
+    box-shadow:
+    0 8px 18px rgba(16,185,129,.25);
+}
+
+.open-btn:hover{
+
+    transform:
+    translateY(-2px);
+}
+
+.delete-btn{
+
+    background:
+    linear-gradient(
+        135deg,
+        #ef4444,
+        #dc2626
+    );
+
+    color:white;
+
+    padding:11px 16px;
+
+    border-radius:12px;
+
+    font-weight:700;
+
+    box-shadow:
+    0 8px 18px rgba(239,68,68,.25);
+}
+
+.delete-btn:hover{
+
+    transform:
+    translateY(-2px);
+}
+
+/* =========================
+EMPTY
+========================= */
+
+.empty{
+
+    text-align:center;
+
+    color:#94a3b8;
+
+    padding:30px;
+
+    font-size:15px;
+}
+
+/* =========================
+SCROLLBAR
+========================= */
+
+::-webkit-scrollbar{
+
+    width:10px;
+}
+
+::-webkit-scrollbar-track{
+
+    background:#0f172a;
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#334155;
+
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#475569;
+}
+
+/* =========================
+MOBILE
+========================= */
+
+@media(max-width:768px){
+
+    body{
+        padding:15px;
+    }
+
+    h2{
+        font-size:22px;
+    }
+
+    .doctor-card{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:15px;
+    }
+
+    .actions{
+
+        width:100%;
+    }
+
+    .open-btn,
+    .delete-btn{
+
+        flex:1;
+    }
+}
+body{
+    padding-bottom:85px;
+}
+
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:70px;
+
+    background:#0f172a;
+
+    display:flex;
+
+    align-items:center;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+    box-shadow:0 -4px 20px rgba(0,0,0,.4);
+
+    z-index:99999;
+}
+
+.nav-item{
+    flex:1;   /* 👈 أهم سطر: يجعل كل عنصر يملأ الشريط */
+    
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    text-decoration:none;
+
+    color:#94a3b8;
+
+    font-size:11px;
+
+    gap:4px;
+
+    height:100%;
+}
+
+.nav-item i{
+    font-size:20px;
+}
+
+.nav-item.active{
+    color:#38bdf8;
+}
+
+.doctor-details{
+    margin-bottom:20px;
+    border:none;
+}
+
+.doctor-summary{
+    list-style:none;
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+
+    padding:16px 20px;
+
+    border-radius:18px;
+
+    background:linear-gradient(
+        135deg,
+        #6366f1,
+        #8b5cf6
+    );
+
+    color:white;
+    font-size:16px;
+    font-weight:700;
+
+    box-shadow:
+        0 10px 25px rgba(99,102,241,.30);
+
+    transition:.3s;
+}
+
+.doctor-summary:hover{
+    transform:translateY(-2px);
+}
+
+.doctor-summary::-webkit-details-marker{
+    display:none;
+}
+
+.arrow{
+    transition:.3s;
+}
+
+.doctor-details[open] .arrow{
+    transform:rotate(180deg);
+}
+
+.doctor-form{
+    margin-top:15px;
+
+    padding:20px;
+
+    background:#111827;
+
+    border-radius:18px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.dashboard-divider{
+    height:1px;
+    width:100%;
+    margin:25px 0;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(128,255,219,.6),
+        transparent
+    );
+
+    position:relative;
+}
+
+/* نقطة في المنتصف */
+.dashboard-divider::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+
+    width:8px;
+    height:8px;
+    border-radius:50%;
+
+    background:#80ffdb;
+    box-shadow:0 0 10px #80ffdb;
+}
+
+</style>
+</head>
+
+<body>
+
+    <h1 class="page-title">
+    <i class="fa-solid fa-user-doctor"></i>
+    Doctors Management
+</h1>
+
+<!-- =========================
+ADD DOCTOR
+========================= -->
+
+<details class="doctor-details">
+
+    <summary class="doctor-summary">
+        <i class="fa-solid fa-user-doctor"></i>
+        Add Doctor - إضافة طبيب
+        <i class="fa-solid fa-chevron-down arrow"></i>
+    </summary>
+
+    <div class="doctor-form">
+
+        <input id="doctorName" placeholder="Doctor Name">
+
+        <input id="doctorSpecialization" placeholder="Specialization">
+
+        <input id="doctorAge" type="number" placeholder="Age">
+
+        <input id="doctorPhone" placeholder="Phone">
+
+        <input id="doctorAddress" placeholder="Address">
+
+        <button
+            class="primary-btn"
+            onclick="saveDoctor()"
+        >
+            Save Doctor
+        </button>
+
+    </div>
+
+</details>
+
+
+</div>
+
+<div class="card">
+    <button onclick="goToDashboard()" class="primary-btn"
+style="
+    background:linear-gradient(135deg,#00b09b,#96c93d);
+    padding:12px 16px;
+    font-weight:600;
+    border-radius:12px;
+    box-shadow:0 6px 15px rgba(0,176,155,0.25);
+">
+    ← Dashboard
+</button>
+</div>
+
+
+  <!-- فاصل  -->
+<div class="dashboard-divider"></div>
+
+<!-- =========================
+LIST
+========================= -->
+
+<div class="card">
+
+<h2>
+<i class="fa-solid fa-users"></i>
+Doctors List - قائمة الاطباء
+</h2>
+
+<div id="doctorsContainer"></div>
+
+</div>
+<!-- شريط تنقل سفلي  -->
+<div class="bottom-nav">
+
+    <a href="dashboard.html" class="nav-item">
+        <i class="fa-solid fa-house"></i>
+        <span>الرئيسية</span>
+    </a>
+
+<a href="dashboard.html#appointmentssContainer" class="nav-item">
+    <i class="fa-solid fa-calendar-check"></i>
+    <span>الزيارات</span>
+</a>
+
+    <a href="patients.html" class="nav-item">
+        <i class="fa-solid fa-user-plus"></i>
+        <span>اضافة مريض</span>
+    </a>
+
+<a href="dashboard.html#patientsSection" class="nav-item">
+        <i class="fa-solid fa-users"></i>
+        <span>ملفات المرضى</span>
+    </a>
+
+  
+
+    <a href="Bill.html" class="nav-item">
+        <i class="fa-solid fa-file-invoice-dollar"></i>
+        <span>الفواتير</span>
+    </a>
+
+    <a href="labs.html" class="nav-item">
+        <i class="fa-solid fa-screwdriver-wrench"></i>
+        <span>المعامل</span>
+    </a>
+
+    <a href="doctors.html" class="nav-item active">
+        <i class="fa-solid fa-user-doctor"></i>
+        <span>الأطباء</span>
+    </a>
+
+<a href="prints.html" class="nav-item">
+       <i class="fa-solid fa-file-prescription"></i>
+        <span>المطبوعات</span>
+    </a>
+
+ <a href="dashboard.html#analyticsSection" class="nav-item">
+        <i class="fa-solid fa-chart-line"></i>
+        <span>التقارير</span>
+    </a>
+
+    <a href="pricing.html" class="nav-item">
+        <i class="fa-solid fa-tags"></i>
+        <span>التسعير</span>
+    </a>
+
+ <a href="dose-calculator.html" class="nav-item">
+    <i class="fa-solid fa-pills"></i>
+    <span>حاسبة الجرعات</span>
+</a>
+
+
+</div>
+
+<!-- spacer مهم -->
+<div style="height:90px;">
+</div>
+<!-- =========================
+SCRIPTS
+========================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="js/supabase.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/doctors.js"></script>
+
+</body>
+</html>

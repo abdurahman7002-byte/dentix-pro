@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Clinic Login</title>
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+        <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0f172a">
+
+<style>
+
+
+
+    .app-title{
+    width:100%;
+    text-align:center;
+    margin-top:25px;
+    margin-bottom:10px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+
+    font-size:42px;
+    font-weight:800;
+
+    background: linear-gradient(135deg,#4cc9f0,#80ffdb);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    letter-spacing:1px;
+
+    animation: fadeUp 0.6s ease;
+}
+
+.app-title i{
+    font-size:38px;
+    color:#4cc9f0;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+
+    background:
+    radial-gradient(circle at top left,#1d3557 0%,transparent 25%),
+    radial-gradient(circle at bottom right,#2a9d8f 0%,transparent 25%),
+    #0b1120;
+
+    min-height:100vh;
+
+    display:flex;
+    flex-direction:column;
+
+    justify-content:flex-start;
+    align-items:center;
+
+    overflow-y:auto;
+
+    color:white;
+}
+
+/* LOGIN CARD */
+
+.login-card{
+
+    width:100%;
+    max-width:420px;
+
+    background:rgba(255,255,255,0.05);
+
+    backdrop-filter:blur(14px);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    border-radius:30px;
+
+    padding:40px;
+
+    text-align:center;
+
+    box-shadow:
+    0 10px 40px rgba(0,0,0,0.4);
+
+    animation:fadeUp 0.7s ease;
+
+    position:relative;
+    z-index:2;
+     margin-top:30px; /* جديد */
+}
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+.logo{
+
+    width:90px;
+    height:90px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:linear-gradient(135deg,#00b4d8,#48cae4);
+
+    margin-bottom:25px;
+
+    box-shadow:
+    0 10px 25px rgba(0,180,216,0.35);
+
+    animation:pulse 2s infinite;
+}
+
+.logo i{
+
+    font-size:40px;
+    color:white;
+}
+
+@keyframes pulse{
+
+    0%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.08);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+
+}
+
+h2{
+
+    font-size:34px;
+
+    margin-bottom:10px;
+
+    background:linear-gradient(to right,#4cc9f0,#80ffdb);
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.subtitle{
+
+    color:#b8c1ec;
+
+    margin-bottom:30px;
+
+    font-size:15px;
+}
+
+/* INPUTS */
+
+.input-group{
+
+    position:relative;
+
+    margin-bottom:20px;
+}
+
+.input-group i{
+
+    position:absolute;
+
+    left:18px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    color:#80ffdb;
+}
+
+input{
+
+    width:100%;
+
+    padding:16px 16px 16px 50px;
+
+    border:none;
+    outline:none;
+
+    border-radius:16px;
+
+    background:#101826;
+
+    color:white;
+
+    font-size:15px;
+
+    transition:0.3s;
+}
+
+input:focus{
+
+    box-shadow:
+    0 0 0 3px rgba(72,202,228,0.35);
+
+    transform:translateY(-2px);
+}
+
+input::placeholder{
+    color:#94a3b8;
+}
+
+/* BUTTON */
+
+button{
+
+    width:100%;
+
+    border:none;
+
+    padding:16px;
+
+    border-radius:16px;
+
+    cursor:pointer;
+
+    font-size:16px;
+    font-weight:600;
+
+    color:white;
+
+    background:linear-gradient(135deg,#00b4d8,#48cae4);
+
+    box-shadow:
+    0 10px 25px rgba(0,180,216,0.35);
+
+    transition:0.3s ease;
+
+    position:relative;
+    overflow:hidden;
+}
+
+button::before{
+
+    content:'';
+
+    position:absolute;
+
+    top:0;
+    left:-100%;
+
+    width:100%;
+    height:100%;
+
+    background:rgba(255,255,255,0.15);
+
+    transition:0.5s;
+}
+
+button:hover::before{
+    left:100%;
+}
+
+button:hover{
+
+    transform:translateY(-3px) scale(1.02);
+}
+
+/* FLOATING ICONS */
+
+.floating-icon{
+
+    position:absolute;
+
+    color:rgba(255,255,255,0.06);
+
+    font-size:50px;
+
+    animation:float 6s ease-in-out infinite;
+
+    pointer-events:none;
+}
+
+.icon1{
+    top:10%;
+    left:8%;
+}
+
+.icon2{
+    bottom:10%;
+    right:8%;
+    animation-delay:2s;
+}
+
+.icon3{
+    top:50%;
+    right:15%;
+    animation-delay:1s;
+}
+
+@keyframes float{
+
+    0%{
+        transform:translateY(0px) rotate(0deg);
+    }
+
+    50%{
+        transform:translateY(-18px) rotate(8deg);
+    }
+
+    100%{
+        transform:translateY(0px) rotate(0deg);
+    }
+
+}
+
+/* MOBILE */
+
+@media(max-width:500px){
+
+    .login-card{
+        margin:20px;
+        padding:30px 24px;
+    }
+
+    h2{
+        font-size:28px;
+    }
+
+}
+
+/* toast  */
+.toast{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+
+    background:#1f2937;
+    color:white;
+
+    padding:14px 20px;
+    border-radius:12px;
+
+    font-size:16px;
+    font-weight:600;
+
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+
+    opacity:0;
+    transform:translateY(20px);
+
+    transition:all 0.4s ease;
+
+    z-index:9999;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+footer{
+    width:100%;
+    margin-top:60px;
+    background:#020617;
+    padding:40px 20px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:30px;
+    justify-content:space-between;
+}
+
+.footer-section{
+    flex:1;
+    min-width:250px;
+}
+
+.footer-section p,
+.footer-section a{
+    color:#cbd5e1;
+    text-decoration:none;
+}
+
+.footer-section a:hover{
+    color:#38bdf8;
+}
+footer{
+    flex-direction:column;
+}
+/* =========================
+   LOGO
+========================= */
+
+.logo{
+    width:90px;
+    border-radius:16px;
+    margin-top:10px;
+}
+
+/* =========================
+   WHATSAPP
+========================= */
+
+.whatsapp-contact{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 12px;
+    width: fit-content;
+    margin-left: auto; /* يجعل العنصر على اليمين */
+}
+
+.whatsapp-contact img{
+    width: 32px;
+    height: 32px;
+}
+
+#aboutme h3{
+    text-align: center;
+}
+
+#aboutme p{
+    direction: rtl;
+    text-align: right;
+}
+</style>
+
+</head>
+
+<body>
+<!-- HEADER TITLE -->
+<div class="app-title">
+    <i class="fa-solid fa-tooth"></i>
+    <span>Dentix Pro</span>
+</div>
+<!-- FLOATING ICONS -->
+
+<i class="fa-solid fa-tooth floating-icon icon1"></i>
+<i class="fa-solid fa-heart-pulse floating-icon icon2"></i>
+<i class="fa-solid fa-user-doctor floating-icon icon3"></i>
+
+<!-- LOGIN CARD -->
+
+<div class="login-card">
+
+    <div class="logo">
+
+        <i class="fa-solid fa-tooth"></i>
+
+    </div>
+
+    <h2>Clinic Login</h2>
+
+    <p class="subtitle">
+        Secure access to your clinic dashboard
+    </p>
+
+    <!-- EMAIL -->
+
+    <div class="input-group">
+
+        <i class="fa-solid fa-envelope"></i>
+
+        <input 
+            id="email" 
+            type="email"
+            placeholder="Enter your email"
+        >
+
+    </div>
+
+    <!-- PASSWORD -->
+
+    <div class="input-group">
+
+        <i class="fa-solid fa-lock"></i>
+
+        <input 
+            id="password" 
+            type="password" 
+            placeholder="Enter your password"
+        >
+
+    </div>
+
+    <!-- BUTTON -->
+
+    <button onclick="login()">
+
+        <i class="fa-solid fa-right-to-bracket"></i>
+        Login
+
+    </button>
+    
+
+</div>
+
+
+<footer id="aboutme">
+  
+<div class="footer-section">
+
+    <div id="aboutme">
+<h3>About Us</h3>
+  <p> **Dentix Pro** <br> هو نظام متكامل لإدارة عيادات طب الأسنان، مصمم لتبسيط العمليات اليومية وتحسين كفاءة العمل داخل العيادة.
+
+يوفر التطبيق مجموعة شاملة من الأدوات التي تساعد على إدارة الخدمات العلاجية وتسعيرها، وتنظيم بيانات الأطباء والمعامل، وإنشاء الفواتير ومتابعة المدفوعات بسهولة. كما يتيح حفظ ملفات المرضى وسجلاتهم الطبية بشكل منظم وآمن، مع إمكانية الوصول السريع إلى تاريخ الزيارات والعلاجات.
+
+يقدم Dentix Pro أيضًا لوحة إحصائيات متقدمة تعرض أداء العيادة من خلال تقارير ورسوم بيانية تساعد في متابعة الإيرادات والخدمات الأكثر استخدامًا وعدد المرضى والفواتير، مما يدعم اتخاذ القرارات الإدارية بكفاءة.
+<br>
+**أهم المميزات:** <br>
+
+* إدارة خدمات وعلاجات الأسنان وتسعيرها. <br>
+* إدارة الأطباء والمعامل ومتابعة المستحقات. <br>
+* إنشاء وإدارة الفواتير والمدفوعات. <br>
+* حفظ وتنظيم ملفات المرضى والسجلات الطبية. <br>
+* عرض إحصائيات وتقارير شاملة لأداء العيادة. <br>
+* واجهة سهلة الاستخدام وسريعة الاستجابة. <br>
+* تخزين آمن للبيانات مع إمكانية الوصول إليها في أي وقت. <br>
+
+Dentix Pro هو الحل الذكي لإدارة عيادات الأسنان الحديثة بكفاءة واحترافية.
+
+  </p> 
+    </div>
+  </div> <div class="footer-section">
+<div id="contact me" >
+    <h3>Contat Us</h3>
+<p> <a href="mailto:abdurahman7002@gmail.com">Email</a> Abdurahman7002@gmail.com</p>
+    <p> <a href="tel:+201097183135">Phone </a>201097183135 </p>
+    <a href="https://wa.me/201097183135" target="_blank" class="whatsapp-contact">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+      <span>WhatsApp</span>
+  </a>
+
+
+</div>
+  
+  </div> <div class="footer-section"> <h3>حقوق النشر</h3> <p>© 2026 جميع الحقوق محفوظة.</p> 
+  
+  
+</footer>
+
+<!-- SUPABASE -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="js/supabase.js"></script>
+
+<script>
+
+async function login(){
+
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    if(!email || !password){
+        alert("Please enter email and password");
+        return;
+    }
+
+    const { data, error } = await supabaseClient.auth.signInWithPassword({
+        email,
+        password
+    });
+
+    if(error){
+        alert(error.message);
+        return;
+    }
+
+    showToast("Logged in successfully");
+
+    // 🔥 تأكد أن session اتسجل فعلاً قبل التحويل
+    const { data: sessionData } =
+        await supabaseClient.auth.getSession();
+
+    if(sessionData?.session){
+
+        // slight delay to ensure storage sync (important for Redmi/low-end devices)
+        setTimeout(() => {
+            window.location.replace("dashboard.html");
+        }, 500);
+
+    } else {
+
+        // fallback safety
+        setTimeout(() => {
+            window.location.replace("dashboard.html");
+        }, 1200);
+    }
+}
+// toast 
+function showToast(message){
+    const toast = document.getElementById("toast");
+
+    toast.innerText = message;
+    toast.classList.add("show");
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+    }, 3000);
+}
+
+</script>
+
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("service-worker.js");
+}
+</script>
+<!-- toast  -->
+<div id="toast" class="toast"></div>
+
+</body>
+</html>

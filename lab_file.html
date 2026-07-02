@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lab File</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    padding:25px;
+    color:white;
+
+    background:
+    radial-gradient(circle at top left,#2563eb33 0%,transparent 35%),
+    radial-gradient(circle at bottom right,#06b6d433 0%,transparent 35%),
+    linear-gradient(135deg,#020617,#0f172a,#111827);
+
+    background-attachment:fixed;
+}
+
+/* HEADER */
+
+h2{
+    font-size:34px;
+    font-weight:800;
+    margin-bottom:25px;
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    color:#ffffff;
+
+    text-shadow:
+    0 0 20px rgba(59,130,246,.5);
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.card,
+.glass-card,
+.dashboard-card{
+
+    background:
+    rgba(30,41,59,.75);
+
+    backdrop-filter:
+    blur(18px);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    border-radius:24px;
+
+    padding:24px;
+
+    margin-bottom:22px;
+
+    box-shadow:
+    0 15px 40px rgba(0,0,0,.35);
+
+    transition:.35s;
+}
+
+.card:hover,
+.glass-card:hover,
+.dashboard-card:hover{
+    transform:translateY(-3px);
+}
+
+/* =========================
+   TITLES
+========================= */
+
+.card-title{
+    font-size:22px;
+    font-weight:700;
+    color:white;
+    margin-bottom:20px;
+}
+
+h3{
+    color:white;
+}
+
+/* =========================
+   GRID
+========================= */
+
+.form-grid,
+.row,
+.edit-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:15px;
+}
+
+.input-group{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.input-group.full{
+    grid-column:1/-1;
+}
+
+label{
+    color:#cbd5e1;
+    font-size:13px;
+    font-weight:500;
+}
+
+/* =========================
+   INPUTS
+========================= */
+
+input,
+textarea,
+select{
+
+    width:100%;
+
+    padding:14px 16px;
+
+    border-radius:16px;
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    background:
+    rgba(15,23,42,.85);
+
+    color:white;
+
+    outline:none;
+
+    transition:.3s;
+}
+
+input::placeholder,
+textarea::placeholder{
+    color:#94a3b8;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+
+    border-color:#3b82f6;
+
+    box-shadow:
+    0 0 0 4px rgba(59,130,246,.15);
+
+    transform:translateY(-1px);
+}
+
+/* =========================
+   VALUE BOX
+========================= */
+
+.value-box{
+
+    background:
+    rgba(15,23,42,.8);
+
+    border:
+    1px solid rgba(255,255,255,.06);
+
+    border-radius:14px;
+
+    padding:14px;
+
+    font-weight:600;
+
+    color:white;
+
+    min-height:50px;
+
+    display:flex;
+    align-items:center;
+
+    transition:.3s;
+}
+
+.value-box:hover{
+
+    border-color:#3b82f6;
+
+    box-shadow:
+    0 8px 20px rgba(59,130,246,.15);
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+button{
+
+    border:none;
+
+    cursor:pointer;
+
+    font-weight:700;
+
+    transition:.3s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+}
+
+.primary{
+
+    background:
+    linear-gradient(
+    135deg,
+    #2563eb,
+    #06b6d4
+    );
+
+    color:white;
+
+    padding:14px 18px;
+
+    border-radius:14px;
+
+    box-shadow:
+    0 10px 25px rgba(37,99,235,.3);
+}
+
+.green{
+
+    background:
+    linear-gradient(
+    135deg,
+    #10b981,
+    #14b8a6
+    );
+
+    color:white;
+
+    padding:14px 18px;
+
+    border-radius:14px;
+}
+
+.red{
+
+    background:
+    linear-gradient(
+    135deg,
+    #ef4444,
+    #dc2626
+    );
+
+    color:white;
+
+    padding:14px 18px;
+
+    border-radius:14px;
+}
+
+.gray{
+    background:#475569;
+    color:white;
+}
+
+.glow-btn:hover{
+    box-shadow:
+    0 12px 30px rgba(59,130,246,.35);
+}
+
+/* =========================
+   BACK BUTTON
+========================= */
+
+.back-btn{
+
+    background:
+    linear-gradient(
+    135deg,
+    #6366f1,
+    #06b6d4
+    );
+
+    color:white;
+
+    padding:14px 18px;
+
+    border-radius:14px;
+
+    margin-bottom:15px;
+
+    box-shadow:
+    0 10px 25px rgba(99,102,241,.3);
+}
+
+/* =========================
+   WORK ITEMS
+========================= */
+
+.item{
+
+    background:
+    linear-gradient(
+    145deg,
+    rgba(51,65,85,.85),
+    rgba(30,41,59,.85)
+    );
+
+    border:
+    1px solid rgba(255,255,255,.05);
+
+    border-radius:18px;
+
+    padding:18px;
+
+    margin-bottom:15px;
+
+    transition:.3s;
+}
+
+.item:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 12px 28px rgba(0,0,0,.25);
+}
+
+.title{
+
+    font-size:20px;
+
+    font-weight:700;
+
+    color:#93c5fd;
+}
+
+.small{
+
+    color:#cbd5e1;
+
+    margin-top:8px;
+
+    line-height:1.7;
+}
+
+/* =========================
+   ACTIONS
+========================= */
+
+.actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:12px;
+}
+
+.btn{
+
+    padding:10px 14px;
+
+    border-radius:10px;
+
+    font-size:13px;
+}
+
+.edit-btn{
+
+    background:
+    linear-gradient(
+    135deg,
+    #f59e0b,
+    #fbbf24
+    );
+
+    color:black;
+}
+
+.delete-btn{
+
+    background:
+    linear-gradient(
+    135deg,
+    #ef4444,
+    #dc2626
+    );
+
+    color:white;
+}
+
+.save-btn{
+
+    background:
+    linear-gradient(
+    135deg,
+    #22c55e,
+    #16a34a
+    );
+
+    color:white;
+}
+
+.cancel-btn{
+
+    background:
+    linear-gradient(
+    135deg,
+    #ef4444,
+    #dc2626
+    );
+
+    color:white;
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.dash-header h3{
+
+    font-size:24px;
+
+    margin-bottom:5px;
+}
+
+.dash-sub{
+
+    color:#94a3b8;
+
+    font-size:13px;
+}
+
+.dash-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(180px,1fr));
+
+    gap:15px;
+
+    margin-top:20px;
+}
+
+.dash-item{
+
+    background:
+    rgba(15,23,42,.9);
+
+    border:
+    1px solid rgba(255,255,255,.05);
+
+    border-radius:18px;
+
+    padding:18px;
+
+    text-align:center;
+
+    transition:.3s;
+}
+
+.dash-item:hover{
+
+    transform:translateY(-4px);
+
+    border-color:#3b82f6;
+}
+
+.dash-value{
+
+    font-size:26px;
+
+    font-weight:800;
+
+    color:white;
+}
+
+.dash-label{
+
+    margin-top:6px;
+
+    color:#94a3b8;
+
+    font-size:13px;
+}
+
+.dash-profit{
+
+    background:
+    linear-gradient(
+    135deg,
+    #10b981,
+    #059669
+    );
+
+    color:white;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px){
+
+    body{
+        padding:15px;
+    }
+
+    h2{
+        font-size:26px;
+    }
+
+    .card,
+    .glass-card,
+    .dashboard-card{
+        padding:18px;
+    }
+
+    .actions{
+        flex-direction:column;
+    }
+
+    .actions button{
+        width:100%;
+    }
+}
+
+/* ======================
+   PREMIUM DASHBOARD
+====================== */
+
+.dashboard-card{
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(30,41,59,.95),
+        rgba(15,23,42,.95)
+    );
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:28px;
+
+    padding:28px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 20px 50px rgba(0,0,0,.35);
+}
+
+.dashboard-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-120px;
+    right:-120px;
+
+    width:260px;
+    height:260px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(59,130,246,.25),
+        transparent
+    );
+}
+
+.dashboard-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    bottom:-100px;
+    left:-100px;
+
+    width:220px;
+    height:220px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(16,185,129,.18),
+        transparent
+    );
+}
+
+.dash-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:22px;
+
+    position:relative;
+
+    z-index:2;
+}
+
+.dash-header h3{
+
+    font-size:28px;
+
+    font-weight:800;
+
+    color:white;
+
+    margin:0;
+
+    letter-spacing:.5px;
+}
+
+.dash-sub{
+
+    color:#94a3b8;
+
+    font-size:14px;
+
+    background:
+    rgba(255,255,255,.05);
+
+    padding:8px 14px;
+
+    border-radius:999px;
+
+    border:1px solid rgba(255,255,255,.06);
+}
+
+.dash-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+
+    gap:18px;
+
+    position:relative;
+
+    z-index:2;
+}
+
+/* العناصر التي يتم إنشاؤها داخل #dash */
+
+.dash-grid > div{
+
+    background:
+    linear-gradient(
+        145deg,
+        rgba(51,65,85,.95),
+        rgba(30,41,59,.95)
+    );
+
+    border:1px solid rgba(255,255,255,.06);
+
+    border-radius:22px;
+
+    padding:22px;
+
+    transition:.35s;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.dash-grid > div::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-40px;
+    right:-40px;
+
+    width:110px;
+    height:110px;
+
+    border-radius:50%;
+
+    background:
+    rgba(59,130,246,.08);
+}
+
+.dash-grid > div:hover{
+
+    transform:
+    translateY(-6px);
+
+    border-color:#3b82f6;
+
+    box-shadow:
+    0 18px 35px rgba(59,130,246,.15);
+}
+
+.dash-grid strong{
+
+    display:block;
+
+    font-size:34px;
+
+    font-weight:800;
+
+    color:white;
+
+    margin-bottom:8px;
+}
+
+.dash-grid span{
+
+    color:#94a3b8;
+
+    font-size:13px;
+}
+
+body{
+    padding-bottom:85px;
+}
+
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:70px;
+
+    background:#0f172a;
+
+    display:flex;
+
+    align-items:center;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+    box-shadow:0 -4px 20px rgba(0,0,0,.4);
+
+    z-index:99999;
+}
+
+.nav-item{
+    flex:1;   /* 👈 أهم سطر: يجعل كل عنصر يملأ الشريط */
+    
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    text-decoration:none;
+
+    color:#94a3b8;
+
+    font-size:11px;
+
+    gap:4px;
+
+    height:100%;
+}
+
+.nav-item i{
+    font-size:20px;
+}
+
+.nav-item.active{
+    color:#38bdf8;
+}
+
+.modern-details{
+    margin-bottom:20px;
+}
+
+.modern-summary{
+    list-style:none;
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:16px 20px;
+
+    border-radius:18px;
+
+    background:linear-gradient(
+        135deg,
+        #3b82f6,
+        #06b6d4
+    );
+
+    color:white;
+
+    font-size:16px;
+    font-weight:700;
+
+    box-shadow:
+        0 10px 25px rgba(59,130,246,.30);
+
+    transition:.3s;
+}
+
+.modern-summary::-webkit-details-marker{
+    display:none;
+}
+
+.modern-summary:hover{
+    transform:translateY(-2px);
+    box-shadow:
+        0 15px 35px rgba(59,130,246,.40);
+}
+
+.modern-details[open] .modern-summary{
+    border-bottom-left-radius:12px;
+    border-bottom-right-radius:12px;
+}
+
+.modern-summary::after{
+    content:"▼";
+    margin-left:auto;
+    transition:.3s;
+    font-size:12px;
+}
+
+.modern-details[open] .modern-summary::after{
+    transform:rotate(180deg);
+}
+
+#labViewMode{
+    padding:14px !important;
+}
+
+#labViewMode .card-title{
+    margin-bottom:10px !important;
+    font-size:20px;
+}
+
+#labViewMode .form-grid{
+    gap:8px !important;
+}
+
+#labViewMode .input-group label{
+    margin-bottom:3px !important;
+    font-size:12px;
+}
+
+#labViewMode .value-box{
+    padding:8px 10px !important;
+    min-height:auto !important;
+}
+
+.info-box{
+    background:rgba(77,163,255,.12);
+    border:1px solid rgba(77,163,255,.25);
+    color:#7ab8ff;
+    padding:12px 15px;
+    border-radius:14px;
+    margin:18px 0;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:14px;
+}
+
+/* =========================
+   COMPACT MODE
+========================= */
+
+/* الكروت أصغر */
+.card,
+.glass-card,
+.dashboard-card{
+    padding:18px !important;
+    border-radius:20px;
+    margin-bottom:18px;
+}
+
+/* كارت التركيبات */
+.item{
+    padding:16px !important;
+    border-radius:18px;
+    margin-bottom:14px;
+}
+
+/* عنوان التركيبة */
+.item .title{
+    font-size:20px !important;
+    margin-bottom:4px;
+}
+
+/* صندوق الربح */
+.item .profit-box{
+    padding:8px 12px;
+    border-radius:12px;
+    font-size:14px;
+}
+
+/* الجريد داخل الكارت */
+.item .info-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:10px;
+}
+
+/* الصناديق الداخلية */
+.item .info-grid > div{
+    padding:10px !important;
+    border-radius:12px;
+    font-size:13px;
+}
+
+/* صندوق الملاحظات */
+.item .notes-box{
+    padding:10px !important;
+    border-radius:12px;
+    font-size:13px;
+    line-height:1.6;
+}
+
+/* الأزرار */
+.actions{
+    margin-top:10px;
+    gap:8px;
+}
+
+.actions .btn{
+    padding:9px 12px;
+    font-size:13px;
+}
+
+/* =========================
+   EDIT MODE
+========================= */
+
+.edit-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+
+    gap:12px;
+
+    background:rgba(15,23,42,.45);
+
+    padding:16px;
+
+    border-radius:18px;
+
+    border:1px solid rgba(255,255,255,.06);
+
+    margin-bottom:14px;
+}
+
+.edit-grid input,
+.edit-grid textarea{
+
+    background:#111827;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:12px;
+
+    padding:12px;
+
+    color:white;
+}
+
+.edit-grid textarea{
+
+    min-height:90px;
+
+    resize:vertical;
+}
+
+/* =========================
+   LAB INFO
+========================= */
+
+#labViewMode{
+
+    padding:14px !important;
+
+    max-width:900px;
+
+    margin:auto;
+}
+
+#labViewMode .form-grid{
+
+    gap:8px;
+}
+
+#labViewMode .value-box{
+
+    padding:8px 10px;
+
+    min-height:42px;
+
+    font-size:14px;
+}
+
+/* =========================
+   DETAILS
+========================= */
+
+details{
+
+    overflow:hidden;
+
+    border-radius:18px;
+}
+
+details[open]{
+
+    animation:fadeDown .25s ease;
+}
+
+@keyframes fadeDown{
+
+    from{
+        opacity:0;
+        transform:translateY(-8px);
+    }
+
+    to{
+        opacity:1;
+        transform:none;
+    }
+}
+
+/* =========================
+   SCROLL TABLE
+========================= */
+
+.table-wrapper{
+
+    max-height:450px;
+
+    overflow-y:auto;
+
+    border-radius:18px;
+}
+
+.table-wrapper::-webkit-scrollbar{
+
+    width:8px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb{
+
+    background:#3b82f6;
+
+    border-radius:999px;
+}
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+
+    position:fixed;
+
+    top:25px;
+
+    right:25px;
+
+    background:linear-gradient(135deg,#10b981,#059669);
+
+    color:white;
+
+    padding:10px 16px;
+
+    border-radius:999px;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    width:fit-content;
+
+    max-width:max-content;
+
+    white-space:nowrap;
+
+    box-shadow:0 12px 30px rgba(16,185,129,.35);
+
+    z-index:999999;
+
+    animation:toastShow .25s ease;
+}
+
+@keyframes toastShow{
+
+    from{
+        opacity:0;
+        transform:translateY(-15px);
+    }
+
+    to{
+        opacity:1;
+        transform:none;
+    }
+}
+
+/* نفس شكل الـ View Mode */
+
+/* =========================
+   COMPACT EDIT MODE
+========================= */
+
+.edit-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(180px,1fr));
+
+    gap:10px;
+
+    margin-bottom:14px;
+}
+
+.edit-box{
+
+    background:#111827;
+
+    border:1px solid rgba(255,255,255,.06);
+
+    border-radius:14px;
+
+    padding:10px 12px;
+
+    transition:.25s;
+}
+
+.edit-box.full{
+    grid-column:1/-1;
+}
+
+.edit-box label{
+
+    display:block;
+
+    margin-bottom:6px;
+
+    color:#60a5fa;
+
+    font-size:12px;
+
+    font-weight:700;
+}
+
+.edit-box input,
+.edit-box textarea{
+
+    width:100%;
+
+    background:#0f172a;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:10px;
+
+    padding:8px 10px;
+
+    color:white;
+
+    font-size:13px;
+}
+
+.edit-box textarea{
+
+    min-height:80px;
+
+    resize:vertical;
+}
+
+.edit-box:hover{
+
+    border-color:#3b82f6;
+
+    box-shadow:0 6px 14px rgba(59,130,246,.15);
+}
+
+.actions .save-btn,
+.actions .cancel-btn{
+
+    padding:10px 14px;
+
+    font-size:13px;
+
+    border-radius:10px;
+
+    flex:1;
+}
+
+.dashboard-divider{
+    height:1px;
+    width:100%;
+    margin:25px 0;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(128,255,219,.6),
+        transparent
+    );
+
+    position:relative;
+}
+
+/* نقطة في المنتصف */
+.dashboard-divider::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+
+    width:8px;
+    height:8px;
+    border-radius:50%;
+
+    background:#80ffdb;
+    box-shadow:0 0 10px #80ffdb;
+}
+
+</style>
+
+</head>
+
+<body>
+
+   <div style="
+position:fixed;
+inset:0;
+pointer-events:none;
+background:
+radial-gradient(circle at 20% 20%,rgba(59,130,246,.08),transparent 25%),
+radial-gradient(circle at 80% 80%,rgba(16,185,129,.08),transparent 25%);
+z-index:-1;">
+</div>
+
+<h2><i class="fa-solid fa-flask"></i> Lab File</h2>
+
+<div id="labViewMode" class="card glass-card">
+
+ <button onclick="goHome()"
+    style="
+        background: linear-gradient(135deg, #ef4444, #f97316);
+        color: white;
+        border: none;
+        padding: 10px 14px;
+        border-radius: 12px;
+        cursor: pointer;
+        font-weight: 600;
+        margin-bottom: 15px;
+        box-shadow: 0 6px 16px rgba(239, 68, 68, 0.25);
+        transition: 0.3s;
+    "
+    onmouseover="this.style.transform='translateY(-2px)'"
+    onmouseout="this.style.transform='translateY(0)'"
+>
+    ← Back to Dashboard
+</button>
+
+    <button class="back-btn" onclick="goToRegister()">
+    ← Back to Register
+</button>
+
+    <h3 class="card-title">🏥 Lab Info</h3>
+
+    <div class="form-grid">
+
+        <div class="input-group">
+            <label>Lab Name</label>
+            <div id="labName" class="value-box">-</div>
+        </div>
+
+        <div class="input-group">
+            <label>Specialization</label>
+            <div id="labSpec" class="value-box">-</div>
+        </div>
+
+        <div class="input-group full">
+            <label>Address</label>
+            <div id="labAddress" class="value-box">-</div>
+        </div>
+
+        <div class="input-group full">
+            <label>Phone</label>
+            <div id="labPhone" class="value-box">-</div>
+        </div>
+
+    </div>
+
+    <button class="primary" onclick="enableEditLab()">
+        ✏️ Edit Lab Info
+    </button>
+
+</div>
+
+<div id="labEditMode" class="card glass-card" style="display:none;">
+
+    <h3 class="card-title">✏️ Edit Lab Info</h3>
+
+    <input id="edit_labName" placeholder="Lab Name">
+    <input id="edit_labSpec" placeholder="Specialization">
+    <input id="edit_labAddress" placeholder="Address">
+    <input id="edit_labPhone" placeholder="Phone">
+
+    <div style="display:flex; gap:10px; margin-top:10px;">
+
+        <button class="green" onclick="saveLabEdit()">
+            Save
+        </button>
+
+        <button class="red" onclick="cancelEditLab()">
+            Cancel
+        </button>
+
+    </div>
+
+</div>
+
+  <!-- فاصل  -->
+<div class="dashboard-divider"></div>
+
+<!-- ADD WORK -->
+<details class="modern-details">
+
+    <summary class="modern-summary">
+        <i class="fa-solid fa-flask"></i>
+        Add New Work - إضافة تركيبة جديدة
+    </summary>
+
+    <div class="card glass-card" style="margin-top:15px;">
+
+        <h3 class="card-title">➕ Add Work</h3>
+
+        <div class="form-grid">
+
+            <div class="input-group">
+                <label>Doctor</label>
+                <input id="doctorName" placeholder="Doctor Name">
+            </div>
+
+            <div class="input-group">
+                <label>Patient</label>
+                <input id="patientName" placeholder="Patient Name">
+            </div>
+
+            <div class="input-group">
+                <label>اسم التركيبة</label>
+                <input id="workName" placeholder="(crown,bridge,...)">
+            </div>
+
+            <div class="input-group">
+                <label>نوع التركيبة</label>
+                <input id="workType" placeholder="(PFM,zirconia,...)">
+            </div>
+
+            <div class="input-group">
+                <label>حساب المعمل</label>
+                <input id="labCost" placeholder="Lab Cost">
+            </div>
+
+            <div class="input-group">
+                <label>التكلفة على المريض</label>
+                <input id="patientAmount" placeholder="Patient Amount">
+            </div>
+
+            <div class="input-group full">
+                <label>Delivery Date وقت التسليم</label>
+                <input id="deliveryDate" type="date">
+            </div>
+
+            <div class="input-group full">
+                <label>Notes (shade , occlusion,...)</label>
+                <textarea id="notes" placeholder="Notes"></textarea>
+            </div>
+
+        </div>
+
+        <button class="green glow-btn" onclick="saveWork()">
+            Save Work
+        </button>
+
+    </div>
+
+</details>
+
+  <!-- فاصل  -->
+<div class="dashboard-divider"></div>
+
+<!-- DASHBOARD -->
+<div class="card dashboard-card">
+
+    <div class="dash-header">
+        <h3>📊 Lab Analytics</h3>
+        <span class="dash-sub">Overview of works & revenue</span>
+    </div>
+
+    <div id="dash" class="dash-grid"></div>
+
+</div>
+
+  <!-- فاصل  -->
+<div class="dashboard-divider"></div>
+
+<!-- WORKS LIST -->
+<div class="card">
+
+<h3>Lab Works - سجل التركيبات </h3>
+ <div class="info-box">
+        <i class="fa-solid fa-clock"></i>
+        تختفي التركيبات الاقدم من 6 أشهر تلقائياً
+    </div>
+
+<div id="worksContainer"></div>
+
+</div>
+<!-- شريط تنقل سفلي  -->
+<div class="bottom-nav">
+
+    <a href="dashboard.html" class="nav-item active">
+        <i class="fa-solid fa-house"></i>
+        <span>الرئيسية</span>
+    </a>
+
+<a href="dashboard.html#appointmentssContainer" class="nav-item">
+    <i class="fa-solid fa-calendar-check"></i>
+    <span>الزيارات</span>
+</a>
+
+    <a href="patients.html" class="nav-item">
+        <i class="fa-solid fa-user-plus"></i>
+        <span>اضافة مريض</span>
+    </a>
+
+<a href="dashboard.html#patientsSection" class="nav-item">
+        <i class="fa-solid fa-users"></i>
+        <span>ملفات المرضى</span>
+    </a>
+
+   
+
+    <a href="Bill.html" class="nav-item">
+        <i class="fa-solid fa-file-invoice-dollar"></i>
+        <span>الفواتير</span>
+    </a>
+
+    <a href="labs.html" class="nav-item active">
+        <i class="fa-solid fa-screwdriver-wrench"></i>
+        <span>المعامل</span>
+    </a>
+
+    <a href="doctors.html" class="nav-item">
+        <i class="fa-solid fa-user-doctor"></i>
+        <span>الأطباء</span>
+    </a>
+
+    <a href="prints.html" class="nav-item">
+       <i class="fa-solid fa-file-prescription"></i>
+        <span>المطبوعات</span>
+    </a>
+
+ <a href="dashboard.html#analyticsSection" class="nav-item">
+        <i class="fa-solid fa-chart-line"></i>
+        <span>التقارير</span>
+    </a>
+
+    <a href="pricing.html" class="nav-item">
+        <i class="fa-solid fa-tags"></i>
+        <span>التسعير</span>
+    </a>
+
+ <a href="dose-calculator.html" class="nav-item">
+    <i class="fa-solid fa-pills"></i>
+    <span>حاسبة الجرعات</span>
+</a>
+
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/lab_file.js"></script>
+
+</body>
+</html>

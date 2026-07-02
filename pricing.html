@@ -1,0 +1,1774 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-41GMR2XDN8"></script>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-41GMR2XDN8');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="author" content="Abdurahman Badawy" >
+<meta name="description" content="Dental Pricing System . Dental Services Pricing in dental clinics by cost struture and option of profit perentage added for value based pricing" >
+<meta name="keywords" content="dental, clinic, pricing, System, dental pricing, pricing system, dental clinic" >
+<meta name="robots" content="index, follow" >
+
+<meta property="og:title" content="DentPrice|Dental Pricing System " >
+<meta property="og:description" content="Dental Pricing System . Dental Services Pricing in dental clinics by cost struture and option of profit perentage added for value based pricing" >
+<meta property="og:url" content="https://dentprice.com" >
+<meta property="og:" content="website" >
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="icon" href="assets/MY LOGO new new-01.png">
+<title>DentPrice | Abdurahman Badawy</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#0f172a;
+    color:#fff;
+    overflow-x:hidden;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    padding:40px 20px;
+    text-align:center;
+    background:
+    linear-gradient(
+        135deg,
+        rgba(15,23,42,.95),
+        rgba(30,41,59,.95)
+    );
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+header h1{
+    font-size:40px;
+    margin-bottom:10px;
+    font-weight:800;
+}
+
+.dev{
+    color:#94a3b8;
+    margin-bottom:25px;
+    font-size:15px;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar-container{
+    display:flex;
+    justify-content:center;
+    margin-top:20px;
+}
+
+.navbar{
+    background:rgba(255,255,255,.06);
+    backdrop-filter:blur(12px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    padding:14px 20px;
+    border-radius:18px;
+
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.navbar a{
+    color:#fff;
+    text-decoration:none;
+    font-weight:600;
+    transition:.3s;
+}
+
+.navbar a:hover{
+    color:#38bdf8;
+}
+
+/* =========================
+   SOCIAL ICONS
+========================= */
+
+.social-icons{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin:25px 0;
+}
+
+.social-icons img{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    transition:.3s;
+}
+
+.social-icons img:hover{
+    transform:scale(1.12);
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+section{
+    width:min(1100px,95%);
+    margin:30px auto;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(12px);
+
+    border-radius:24px;
+
+    padding:25px;
+}
+
+/* =========================
+   TITLES
+========================= */
+
+h2{
+    margin-bottom:20px;
+    font-size:28px;
+    color:#38bdf8;
+}
+
+h3{
+    margin-bottom:15px;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.card{
+    background:#4c6288;
+
+    border:1px solid rgba(255,255,255,.06);
+
+    border-radius:18px;
+
+    padding:18px;
+
+    margin-bottom:18px;
+
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+/* =========================
+   INPUTS
+========================= */
+
+input{
+    width:100%;
+
+    padding:12px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#0f172a;
+
+    color:white;
+
+    outline:none;
+
+    font-size:15px;
+
+    border:1px solid rgba(255,255,255,.08);
+}
+
+input:focus{
+    border-color:#38bdf8;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+button{
+    border:none;
+
+    padding:12px 18px;
+
+    border-radius:14px;
+
+    background:linear-gradient(
+        135deg,
+        #0ea5e9,
+        #2563eb
+    );
+
+    color:white;
+
+    cursor:pointer;
+
+    font-weight:700;
+
+    transition:.3s;
+
+    margin-top:10px;
+}
+
+button:hover{
+    transform:translateY(-2px);
+    opacity:.92;
+}
+
+.delete{
+    background:linear-gradient(
+        135deg,
+        #ef4444,
+        #dc2626
+    );
+}
+
+/* =========================
+   TOTAL BOX
+========================= */
+
+.total{
+    margin-top:20px;
+
+    background:#0f172a;
+
+    border-radius:16px;
+
+    padding:18px;
+
+    line-height:1.9;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    white-space:pre-line;
+}
+
+/* =========================
+   TABLES
+========================= */
+
+table{
+    width:95%;
+    margin:25px auto;
+
+    border-collapse:collapse;
+
+    overflow:hidden;
+
+    border-radius:18px;
+
+    background:#5f89ce;
+}
+
+th{
+    background:#0ea5e9;
+    color:white;
+}
+
+th,td{
+    padding:14px;
+    border:1px solid rgba(255,255,255,.05);
+    text-align:center;
+}
+
+tr:nth-child(even){
+    background:#162033;
+}
+
+/* =========================
+   VISITORS BOX
+========================= */
+
+.visitors-box{
+    position:fixed;
+
+    top:20px;
+    left:20px;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(10px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    padding:15px;
+
+    border-radius:18px;
+
+    z-index:999;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    margin-top:60px;
+
+    background:#020617;
+
+    padding:40px 20px;
+
+    display:flex;
+    flex-wrap:wrap;
+    gap:30px;
+
+    justify-content:space-between;
+}
+
+.footer-section{
+    flex:1;
+    min-width:250px;
+}
+
+.footer-section p,
+.footer-section a{
+    color:#cbd5e1;
+    text-decoration:none;
+}
+
+.footer-section a:hover{
+    color:#38bdf8;
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.logo{
+    width:90px;
+    border-radius:16px;
+    margin-top:10px;
+}
+
+/* =========================
+   WHATSAPP
+========================= */
+
+.whatsapp-contact{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-top:12px;
+}
+
+.whatsapp-contact img{
+    width:32px;
+}
+
+/* =========================
+   AD CONTAINER
+========================= */
+
+.ad-container{
+    width:min(1000px,95%);
+    margin:30px auto;
+
+    background:#1e293b;
+
+    border-radius:20px;
+
+    padding:25px;
+
+    text-align:center;
+
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.ad-label{
+    color:#94a3b8;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:768px){
+
+    header h1{
+        font-size:28px;
+    }
+
+    .navbar{
+        justify-content:center;
+    }
+
+    table{
+        display:block;
+        overflow-x:auto;
+    }
+
+    .visitors-box{
+        position:static;
+        width:90%;
+        margin:20px auto;
+    }
+
+}
+
+.bottom-nav{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+
+    background: #0f172a;
+
+    display: flex;
+    align-items: center;
+
+    /* يبدأ من اليسار */
+    justify-content: flex-start;
+
+    border-top: 1px solid rgba(255,255,255,.08);
+    box-shadow: 0 -4px 20px rgba(0,0,0,.4);
+
+    z-index: 99999;
+
+    /* مهم حتى لا يتأثر باقي التصميم */
+    direction: ltr;
+}
+
+/* العناصر تملي الشريط بالتساوي */
+.bottom-nav .nav-item{
+    flex: 1 1 0;   /* 👈 تملي الشريط بالكامل */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+    color: #94a3b8;
+
+    font-size: 11px;
+    gap: 4px;
+
+    height: 100%;
+}
+
+.bottom-nav .nav-item i{
+    font-size: 20px;
+}
+
+.bottom-nav .nav-item.active{
+    color: #38bdf8;
+}
+
+.file-ui{
+    transition:.25s;
+}
+
+.file-ui.active{
+    border-color:#38bdf8;
+    background:rgba(56,189,248,.12);
+}
+
+.dashboard-divider{
+    height:1px;
+    width:100%;
+    margin:25px 0;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(128,255,219,.6),
+        transparent
+    );
+
+    position:relative;
+}
+
+/* نقطة في المنتصف */
+.dashboard-divider::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+
+    width:8px;
+    height:8px;
+    border-radius:50%;
+
+    background:#80ffdb;
+    box-shadow:0 0 10px #80ffdb;
+}
+
+</style>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- ✅ عداد الزوار -->
+ <div class="visitors-box">
+  <h3>Visitors</h3>
+<p id="visitorCount"> : ...</p>
+ </div>
+
+
+
+
+
+  
+<header id="home">
+<h1>Pricing System for Dental Clinic
+     <i class="fa-solid fa-tags"></i></h1>
+ <div class="dev"> المطوِّر د. عبدالرحمن بدوي</div>
+<!-- Social Media Icons -->
+<div class="social-icons" align="center">
+  
+  <a href="https://www.facebook.com/share/18etVbCoTv/" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
+  </a>
+
+  <a href="https://www.instagram.com/abdel_rahman_el_gasor?igsh=eGRxaDRuNm8ybDM0" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram">
+  </a>
+
+  <a href="https://www.linkedin.com/in/abdr7mn-badawy-gasor-4b7024379" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733561.png" alt="LinkedIn">
+  </a>
+
+
+</div>
+
+<div class="navbar-container">
+<nav class="navbar">
+    <div class="logo"> <b>DentPrice</b> </div>
+<a href="#contact me">Contat Me</a>
+<a href="#aboutme"> About Me </a>
+<a href="#article"> Your Guide</a>
+<a href="#tool"> Calculate</a>
+<a href="#home">Home</a>
+</nav>
+</div>
+
+<button onclick="goToDashboard()"
+style="
+    background: linear-gradient(135deg, #00b09b, #96c93d);
+    color: white;
+    border: none;
+    padding: 14px 22px;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 8px 20px rgba(0, 176, 155, 0.35);
+    transition: all 0.3s ease;
+">
+    <i class="fa-solid fa-house"></i>
+    Back to Dashboard
+</button>
+ 
+</header>
+
+  <!-- فاصل  -->
+<div class="dashboard-divider"></div>
+
+<section id="tool">
+<h2>الأصول (Assets)</h2>
+<div id="assets"></div>
+<button onclick="addAsset()">إضافة أصل</button>
+<br>
+أيام العمل في الشهر: <input id="assetDays" type="number">
+ ساعات العمل في اليوم: <input id="assetHours" type="number">
+
+<div class="total" id="assetResult"></div>
+</section>
+
+  <!-- فاصل  -->
+<div class="dashboard-divider"></div>
+
+<section>
+<h2>التكاليف الشهرية (Monthly Expenses)</h2>
+<div id="expenses"></div>
+<button onclick="addExpense()">إضافة تكلفة</button>
+<br>
+  أيام العمل شهريا: <input id="expDays" type="number">
+ساعات العمل يوميا: <input id="expHours" type="number">
+
+<div class="total" id="expenseResult"></div>
+</section>
+
+  <!-- فاصل  -->
+<div class="dashboard-divider"></div>
+
+<h3>📊 ملخص الأصول</h3>
+<table id="assetsTable">
+  <thead>
+    <tr>
+      <th>اسم الأصل</th>
+      <th>السعر</th>
+      <th>الاهلاك (سنة)</th>
+      <th>العائدالسنوي%</th>
+      <th> السعر بالعائد طوال سنوات الاهلاك</th>
+      <th>التكلفة السنوية</th>
+      <th>التكلفة الشهرية</th>
+      <th>التكلفة اليومية</th>
+      <th> الساعة التشغيلية</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+  <!-- فاصل  -->
+<div class="dashboard-divider"></div>
+
+<h3>📊 ملخص التكاليف الشهرية</h3>
+<table id="expensesTable">
+  <thead>
+    <tr>
+      <th>اسم التكلفة</th>
+      <th>القيمة</th>
+      <th>نصيب اليوم</th>
+      <th>نصيب الساعة</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+  <!-- فاصل  -->
+<div class="dashboard-divider"></div>
+
+<!-- Ad Space -->
+<div class="ad-container">
+  <p class="ad-label">إعلان</p>
+  
+  <!-- صورة إعلان -->
+  
+
+  <!-- أو يمكنك وضع كود Google Ads هنا -->
+  <!--
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-XXXXXXXXXXXX"
+       data-ad-slot="XXXXXXXXXX"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  -->
+</div>
+
+  <!-- فاصل  -->
+<div class="dashboard-divider"></div>
+
+<h3>📊 ملخص الخدمات</h3>
+
+<table id="servicesTable">
+  <thead>
+    <tr>
+      <th>اسم الخدمة</th>
+      <th>عدد الساعات</th>
+      <th>تكلفة المواد</th>
+      <th>الربح %</th>
+      <th>سعر التكلفة</th>
+      <th>السعر النهائي</th>
+    </tr>
+  </thead>
+
+  <tbody></tbody>
+</table>
+  
+  <!-- فاصل  -->
+<div class="dashboard-divider"></div>
+
+<section>
+
+<h2>الخدمات (Servies)</h2>
+<div id="services"></div>
+<button onclick="addService()">إضافة خدمة</button>
+
+<div hidden class="total" id="serviceResult"></div>
+<button onclick="generatePDF()">تحميل PDF</button>
+</section>
+
+  <!-- فاصل  -->
+<div class="dashboard-divider"></div>
+
+<section id="article">
+    <p>
+يوفر الموقع أدوات بسيطة وسهلة الاستخدام تساعدك على:
+</p>
+
+<ul>
+<li>حساب تكلفة الخدمات</li>
+<li>تحديد سعر مناسب للمريض</li>
+<li>تحليل أرباح العيادة</li>
+</ul>
+
+<p>
+هدفي هو تقديم محتوى مفيد لكل طبيب أسنان يريد تطوير عيادته بشكل علمي واحترافي.
+</p>
+<p>
+📌 فكرة النظام
+يتم حساب سعر أي خدمة بناءً على 3 عناصر رئيسية:
+<br>
+<br>
+1) الأصول (Assets) <br>
+وهي مثل:
+<ul>
+<li>الأجهزة</li>
+<li>الكراسي</li>
+<li>الأدوات</li>
+And so on
+</ul>
+يتم:
+<p style="
+  background:#0f172a;
+  color:#e2e8f0;
+  padding:15px;
+  border-radius:10px;
+  line-height:1.7;
+  font-size:14px;
+  margin-top:20px;
+  border:1px solid #334155;
+">
+<strong>طريقة حساب تكلفة الأصول:</strong><br><br>
+
+يتم حساب تكلفة الأصل باستخدام نموذج العائد المركب (Compound Growth)،  
+حيث يتم افتراض أن قيمة الأصل تنمو سنوياً بنسبة العائد المحددة خلال عمره الافتراضي.<br><br>
+
+الصيغة المستخدمة:<br>
+A = P × (1 + r)^n<br><br>
+
+حيث:<br>
+- P = سعر الأصل الأصلي<br>
+- r = نسبة العائد السنوي<br>
+- n = عدد سنوات عمر الأصل<br><br>
+
+بعد حساب القيمة المستقبلية يتم استخراج إجمالي العائد،  
+ثم توزيعه على سنوات العمر للحصول على التكلفة السنوية،  
+ومنها يتم حساب التكلفة الشهرية واليومية وسعر الساعة.<br><br>
+
+هذا النموذج يعطي تقديراً أدق لتكلفة الأصل داخل العيادة مقارنة بالحسابات الخطية التقليدية.
+
+<div style="
+  background: linear-gradient(135deg,#0f172a,#1e293b);
+  color:#fff;
+  padding:20px;
+  border-radius:15px;
+  margin-top:20px;
+  border:1px solid #334155;
+">
+
+<h2>🧮 محاكاة قيمة الأصل (Interactive Sliders)</h2>
+<h3>هذه محاكاة للتوضيح , الاصول بالاعلى تمت حسابتها بهذه الطريقة (للفهم فقط)</h3>
+<h6>اذا كنت لا تريد عائد على الاصول يمكنك جعل قيمة العائد السنوي صفر</h6>
+<p style="opacity:0.8">حرّك الأسهم وشاهد التغيير مباشرة</p>
+
+<!-- PV -->
+<label>💰 سعر الأصل: <span id="pvVal">100000</span></label>
+<input id="pv" type="range" min="1000" max="1000000" value="100000"
+style="width:100%" oninput="updateCalc()">
+
+<br><br>
+
+<!-- RATE -->
+<label>📈 العائد السنوي  : <span id="rateVal">10</span>%</label>
+<input id="rate" type="range" min="0" max="50" value="10"
+style="width:100%" oninput="updateCalc()">
+
+<br><br>
+
+<!-- YEARS -->
+<label>📅 عدد السنوات: <span id="yearsVal">10</span></label>
+<input id="years" type="range" min="1" max="30" value="10"
+style="width:100%" oninput="updateCalc()">
+
+<hr style="border:1px solid #334155; margin:15px 0">
+
+<div id="result" style="
+  font-size:18px;
+  background:#0f172a;
+  padding:15px;
+  border-radius:10px;
+  border:1px solid #334155;
+  transition:0.3s;
+">
+النتيجة تظهر هنا...
+</div>
+
+</div>
+
+<script>
+function updateCalc(){
+
+let pv = parseFloat(document.getElementById("pv").value);
+let rate = parseFloat(document.getElementById("rate").value)/100;
+let n = parseFloat(document.getElementById("years").value);
+
+// update labels
+document.getElementById("pvVal").innerText = pv;
+document.getElementById("rateVal").innerText = (rate*100).toFixed(0);
+document.getElementById("yearsVal").innerText = n;
+
+// calc
+let fv = pv * Math.pow(1 + rate, n);
+let gain = fv - pv;
+
+// animate
+let box = document.getElementById("result");
+box.style.transform = "scale(0.97)";
+box.style.opacity = "0.6";
+
+setTimeout(()=>{
+
+box.innerHTML = `
+<b>📊 النتائج المباشرة:</b><br><br>
+💰 القيمة المستقبلية: <b>${fv.toFixed(2)}</b><br>
+📈 الربح الكلي: <b>${gain.toFixed(2)}</b><br>
+🧮 FV = PV(1+r)^n
+`;
+
+box.style.transform = "scale(1)";
+box.style.opacity = "1";
+
+},120);
+
+}
+
+// تشغيل أولي
+updateCalc();
+</script>
+</p>
+حساب سعر كل أصل
+تقسيمه على عمره الافتراضي (سنوات الاستخدام)
+تحويله إلى تكلفة يومية وساعية حسب عدد ساعات العمل.
+<br>
+<br>
+2) التكاليف الشهرية (Monthly Expenses) <br>
+مثل:
+<ul>
+  <li>
+الإيجار
+  </li> 
+ <li>الكهرباء</li>
+<li>الرواتب</li>
+<li>المستهلكات</li>
+And so on
+</ul>
+يتم:
+جمع كل المصاريف الشهرية
+تقسيمها على عدد ساعات العمل الشهرية 👉 للحصول على تكلفة الساعة التشغيلية
+<br>
+<br>
+3) تكلفة المواد (Materials) : <br>
+وهي
+مواد الحشو
+أدوات العلاج
+أي خامات مستخدمة في الخدمة
+يتم حسابها لكل خدمة على حدة
+📌 طريقة حساب سعر الخدمة
+<br>
+أي خدمة (مثل الحشو أو الزراعة) يتم حسابها كالتالي:
+<br>
+سعر الخدمة =
+تكلفة المواد
+تكلفة وقت العيادة (ساعات الخدمة × تكلفة الساعة)
+نصيبها من الأصول والمصاريف
+نسبة الربح المطلوبة
+<br>
+📊 النتيجة
+في النهاية يحصل الطبيب على:
+التكلفة الحقيقية لكل خدمة
+السعر النهائي مع الربح
+معرفة أرباح العيادة بدقة.
+<br>
+
+🎯 الهدف من النظام :
+  <ul>
+ <li>تسعير عادل ومبني على بيانات </li>
+<li>منع الخسارة بدون ملاحظة </li>
+<li>تحسين أرباح العيادة </li>
+<li>تنظيم الإدارة المالية بشكل احترافي. </li>
+    
+  </ul>
+
+</p>
+
+</section>
+
+<footer id="aboutme">
+  
+<div class="footer-section">
+
+    <div id="aboutme">
+<h3>About Me</h3>
+  <p> Egyptian Dentist د. عبدالرحمن بدوي
+<br>
+طبيب أسنان مهتم بإدارة العيادات وتحليل التكاليف.
+قمت بإنشاء هذا الموقع لمساعدة أطباء الأسنان على حساب تكلفة الخدمات
+وتحديد الأسعار بشكل دقيق لتحقيق أفضل ربح ممكن.
+
+  </p> 
+    </div>
+  </div> <div class="footer-section">
+<div id="contact me" >
+    <h3>Contat Me</h3>
+<p> <a href="mailto:abdurahman7002@gmail.com">Email</a> Abdurahman7002@gmail.com</p>
+    <p> <a href="tel:+201097183135">Phone </a>201097183135 </p>
+    <a href="https://wa.me/201097183135" target="_blank" class="whatsapp-contact">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+      <span>WhatsApp</span>
+  </a>
+
+
+</div>
+  
+  </div> <div class="footer-section"> <h3>حقوق النشر</h3> <p>© 2026 جميع الحقوق محفوظة.</p> <img src="assets/photo_2026-04-10_08-09-42.jpg" alt="Logo" class="logo"> <img src="assets/photo_2026-04-10_08-43-52.jpg" alt="" class="logo"> <img src="assets/photo_2026-04-10_08-34-30.jpg" alt="" class="logo"> </div>
+
+  
+</footer>
+<div class="bottom-nav">
+
+    <a href="dashboard.html" class="nav-item">
+        <i class="fa-solid fa-house"></i>
+        <span>الرئيسية</span>
+    </a>
+
+<a href="dashboard.html#appointmentssContainer" class="nav-item">
+    <i class="fa-solid fa-calendar-check"></i>
+    <span>الزيارات</span>
+</a>
+
+    <a href="patients.html" class="nav-item">
+        <i class="fa-solid fa-user-plus"></i>
+        <span>اضافة مريض</span>
+    </a>
+
+    <a href="dashboard.html#patientsSection" class="nav-item">
+        <i class="fa-solid fa-users"></i>
+        <span>ملفات المرضى</span>
+    </a>
+
+   
+
+    <a href="Bill.html" class="nav-item">
+        <i class="fa-solid fa-file-invoice-dollar"></i>
+        <span>الفواتير</span>
+    </a>
+
+    <a href="labs.html" class="nav-item">
+        <i class="fa-solid fa-screwdriver-wrench"></i>
+        <span>المعامل</span>
+    </a>
+
+    <a href="doctors.html" class="nav-item">
+        <i class="fa-solid fa-user-doctor"></i>
+        <span>الأطباء</span>
+    </a>
+
+<a href="prints.html" class="nav-item">
+       <i class="fa-solid fa-file-prescription"></i>
+        <span>المطبوعات</span>
+    </a>
+
+ <a href="dashboard.html#analyticsSection" class="nav-item">
+        <i class="fa-solid fa-chart-line"></i>
+        <span>التقارير</span>
+    </a>
+
+    <a href="pricing.html" class="nav-item active" aria-current="page"> 
+        <i class="fa-solid fa-tags"></i>
+        <span>التسعير</span>
+    </a>
+
+     <a href="dose-calculator.html" class="nav-item">
+    <i class="fa-solid fa-pills"></i>
+    <span>حاسبة الجرعات</span>
+</a>
+
+
+</div>
+<!-- ================= FIREBASE ================= -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyCchSXrbSdklZQ7M6qaCOdExGY1mcMNC3E",
+  authDomain: "dental-pricing.firebaseapp.com",
+  projectId: "dental-pricing",
+  storageBucket: "dental-pricing.appspot.com",
+  messagingSenderId: "37962180711",
+  appId: "1:37962180711:web:a5812e4a344f6981430cc2"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+// ===== عداد الزوار =====
+async function countVisitor() {
+  try {
+    const ref = db.collection("stats").doc("visits");
+    const doc = await ref.get();
+
+    if (!doc.exists) {
+      await ref.set({ count: 1 });
+    } else {
+      await ref.update({ count: doc.data().count + 1 });
+    }
+
+    const newDoc = await ref.get();
+
+    document.getElementById("visitorCount").innerText =
+      "Views: " + newDoc.data().count;
+
+  } catch (e) {
+    console.log(e);
+    document.getElementById("visitorCount").innerText =
+      "خطأ في Firebase";
+  }
+}
+
+countVisitor();
+</script>
+
+<!-- ================= JS SYSTEM ================= -->
+<script>
+
+
+function addAsset() {
+
+    let div = document.createElement('div');
+    div.className = 'card';
+
+    div.innerHTML = `
+<details style="margin-bottom:10px; border:1px solid #ddd; border-radius:10px; padding:8px;">
+
+  <summary class="asset-title" style="
+      cursor:pointer;
+      font-weight:600;
+      padding:10px;
+      background:#f5f5f5;
+      border-radius:8px;
+      user-select:none;
+  ">
+    أصل جديد
+  </summary>
+
+  <div style="padding:10px; margin-top:10px; display:flex; flex-direction:column; gap:10px;">
+
+    <input type="text" class="asset-name" placeholder="اسم الأصل">
+
+    <input type="number" class="price" placeholder="السعر">
+
+    <input type="number" class="life" placeholder="عمر الأصل (سنوات)">
+
+    <input type="number" class="roi" placeholder="% العائد السنوي">
+
+    <button class="delete"
+        onclick="this.closest('.card').remove(); calcAssets()"
+        style="
+            background:#ff4d4d;
+            color:white;
+            border:none;
+            padding:8px;
+            border-radius:6px;
+            cursor:pointer;
+        ">
+        حذف
+    </button>
+
+  </div>
+
+</details>
+`;
+
+    document.getElementById('assets').appendChild(div);
+
+    // ربط الاسم بالعنوان
+    const input = div.querySelector('.asset-name');
+    const title = div.querySelector('.asset-title');
+
+    input.addEventListener('input', () => {
+        title.textContent = input.value || "أصل جديد";
+    });
+}
+
+
+function calcAssets() {
+
+    let prices = document.querySelectorAll('.price');
+    let lifes = document.querySelectorAll('.life');
+    let rois = document.querySelectorAll('.roi');
+    let names = document.querySelectorAll('.asset-name');
+
+    let tableBody = document.querySelector("#assetsTable tbody");
+    tableBody.innerHTML = "";
+
+    let yearlyTotal = 0;
+
+    prices.forEach((p, i) => {
+
+        let name = names[i].value || "أصل";
+        let price = parseFloat(p.value) || 0;
+        let life = parseFloat(lifes[i].value) || 1;
+        let roi = parseFloat(rois[i].value) || 0;
+
+        let growthRate = roi / 100;
+
+        let futureValue;
+        let yearly;
+
+        // حساب القيمة النهائية للأصل
+        if (roi > 0) {
+
+            futureValue = price * Math.pow(1 + growthRate, life);
+
+            // ✅ توزيع القيمة النهائية على سنوات الإهلاك
+            yearly = futureValue / life;
+
+        } else {
+
+            // بدون عائد
+            futureValue = price;
+
+            // إهلاك عادي
+            yearly = price / life;
+        }
+
+        let monthly = yearly / 12;
+
+        let days = parseFloat(document.getElementById('assetDays').value) || 1;
+        let hours = parseFloat(document.getElementById('assetHours').value) || 1;
+
+        let daily = monthly / days;
+        let hourly = daily / hours;
+
+        yearlyTotal += yearly;
+
+        tableBody.innerHTML += `
+        <tr>
+            <td>${name}</td>
+            <td>${price.toFixed(2)}</td>
+            <td>${life}</td>
+            <td>${roi}%</td>
+            <td>${futureValue.toFixed(2)}</td>
+            <td>${yearly.toFixed(2)}</td>
+            <td>${monthly.toFixed(2)}</td>
+            <td>${daily.toFixed(2)}</td>
+            <td>${hourly.toFixed(2)}</td>
+        </tr>
+        `;
+    });
+
+    let days = parseFloat(document.getElementById('assetDays').value) || 1;
+    let hours = parseFloat(document.getElementById('assetHours').value) || 1;
+
+    let monthlyTotal = yearlyTotal / 12;
+    let dailyTotal = monthlyTotal / days;
+    let hourlyTotal = dailyTotal / hours;
+
+    document.getElementById('assetResult').innerText =
+`إجمالي الأصول سنوياً: ${yearlyTotal.toFixed(2)}
+إجمالي الأصول شهرياً: ${monthlyTotal.toFixed(2)}
+تكلفة الساعة: ${hourlyTotal.toFixed(2)}`;
+
+    return hourlyTotal;
+}
+
+function addExpense() {
+
+  let div = document.createElement('div');
+  div.className = 'card';
+
+  div.innerHTML = `
+<details style="margin-bottom:10px; border:1px solid #ddd; border-radius:10px; padding:8px;">
+
+  <summary class="exp-title" style="
+      cursor:pointer;
+      font-weight:600;
+      padding:10px;
+      background:#f5f5f5;
+      border-radius:8px;
+      user-select:none;
+  ">
+    تكلفة جديدة
+  </summary>
+
+  <div style="padding:10px; margin-top:10px; display:flex; flex-direction:column; gap:10px;">
+
+    <input type="text" class="exp-name" placeholder="اسم التكلفة">
+
+    <input type="number" class="exp" placeholder="القيمة">
+
+    <button class="delete"
+        onclick="this.closest('.card').remove(); calcExpenses()"
+        style="
+            background:#ff4d4d;
+            color:white;
+            border:none;
+            padding:8px;
+            border-radius:6px;
+            cursor:pointer;
+        ">
+        حذف
+    </button>
+
+  </div>
+
+</details>
+`;
+
+  document.getElementById('expenses').appendChild(div);
+
+  // ربط الاسم بالعنوان
+  const input = div.querySelector('.exp-name');
+  const title = div.querySelector('.exp-title');
+
+  input.addEventListener('input', () => {
+    title.textContent = input.value || "تكلفة جديدة";
+  });
+}
+
+
+
+
+
+function calcExpenses(){
+let exps=document.querySelectorAll('.exp');
+let names=document.querySelectorAll('#expenses input:first-child');
+
+let tableBody = document.querySelector("#expensesTable tbody");
+tableBody.innerHTML = "";
+
+let total=0;
+
+let days=document.getElementById('expDays').value||1;
+let hours=document.getElementById('expHours').value||1;
+
+exps.forEach((e,i)=>{
+let name = names[i].value || "تكلفة";
+let value=parseFloat(e.value)||0;
+
+let daily = value / days;
+let hourly = daily / hours;
+
+total += value;
+
+// إضافة صف في الجدول
+tableBody.innerHTML += `
+<tr>
+<td>${name}</td>
+<td>${value.toFixed(2)}</td>
+<td>${daily.toFixed(2)}</td>
+<td>${hourly.toFixed(2)}</td>
+</tr>
+`;
+});
+
+let hourlyTotal = total/(days*hours);
+
+document.getElementById('expenseResult').innerText=
+`إجمالي التكاليف: ${total.toFixed(2)}
+تكلفة الساعة: ${hourlyTotal.toFixed(2)}`;
+
+return hourlyTotal;
+}
+
+
+function addService() {
+
+  let div = document.createElement('div');
+  div.className = 'card';
+
+  div.innerHTML = `
+<details style="margin-bottom:10px; border:1px solid #ddd; border-radius:10px; padding:8px;">
+
+  <summary class="service-title" style="
+      cursor:pointer;
+      font-weight:600;
+      padding:10px;
+      background:#f5f5f5;
+      border-radius:8px;
+      user-select:none;
+  ">
+    خدمة جديدة
+  </summary>
+
+  <div style="padding:10px; margin-top:10px; display:flex; flex-direction:column; gap:10px;">
+
+    <input type="text" class="name" placeholder="اسم الخدمة">
+
+    <input type="number" class="mat" placeholder="سعر المواد المستخدمة">
+
+    <input type="number" class="time" placeholder="الساعات">
+
+    <input type="number" class="profit" placeholder="ربح %">
+
+    <button class="delete"
+        onclick="this.closest('.card').remove(); calcServices()"
+        style="background:#ff4d4d;color:white;border:none;padding:8px;border-radius:6px;cursor:pointer;">
+        حذف
+    </button>
+
+  </div>
+
+</details>
+`;
+
+  document.getElementById('services').appendChild(div);
+
+  const input = div.querySelector('.name');
+  const title = div.querySelector('.service-title');
+
+  input.addEventListener('input', () => {
+    title.textContent = input.value || "خدمة جديدة";
+  });
+}
+
+function calcServices(){
+
+let names=document.querySelectorAll('.name');
+let mats=document.querySelectorAll('.mat');
+let times=document.querySelectorAll('.time');
+let profits=document.querySelectorAll('.profit');
+
+let assetH=calcAssets();
+let expH=calcExpenses();
+
+let tbody = document.querySelector("#servicesTable tbody");
+
+// إعادة بناء الجدول فقط (بدون إجمالي)
+tbody.innerHTML = "";
+
+let totalCost = 0;
+let totalFinal = 0;
+
+mats.forEach((m,i)=>{
+
+let mat=parseFloat(m.value)||0;
+let time=parseFloat(times[i].value)||0;
+let profit=parseFloat(profits[i].value)||0;
+
+let base = mat + (time * (assetH + expH));
+let final = base + (base * profit/100);
+
+let name = names[i].value || `خدمة ${i+1}`;
+
+totalCost += base;
+totalFinal += final;
+
+let row = document.createElement("tr");
+
+row.innerHTML = `
+<td>${name}</td>
+<td>${time}</td>
+<td>${mat}</td>
+<td>${profit}%</td>
+<td>${base.toFixed(2)}</td>
+<td>${final.toFixed(2)}</td>
+
+`;
+
+tbody.appendChild(row);
+
+});
+
+// ما فيش إجمالي هنا
+document.getElementById('serviceResult').innerText =
+`إجمالي التكلفة: ${totalCost.toFixed(2)}
+إجمالي السعر النهائي: ${totalFinal.toFixed(2)}`;
+}
+
+
+function generatePDF(){
+const { jsPDF } = window.jspdf;
+let doc=new jsPDF();
+let y=10;
+
+doc.text("Dental Report",10,y);
+y+=10;
+
+(window.reportData||[]).forEach(s=>{
+doc.text(s.name,10,y); y+=6;
+doc.text("Cost: "+s.base.toFixed(2),10,y); y+=6;
+doc.text("Final: "+s.final.toFixed(2),10,y); y+=10;
+});
+
+doc.save("report.pdf");
+}
+
+setInterval(()=>{
+calcAssets();
+calcExpenses();
+calcServices();
+},2000);
+
+</script>
+
+
+<script>
+function goToDashboard(){
+    window.location.href = "dashboard.html";
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+
+const supabaseUrl = "https://effgebbqhkzaifwgdpoi.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVmZmdlYmJxaGt6YWlmd2dkcG9pIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk0MDk4NzYsImV4cCI6MjA5NDk4NTg3Nn0.YhG_Bzhj2wbMHjtvBymOo6DYb2O2ksfk7svvf-Av9-I";
+
+const supabaseClient = supabase.createClient(
+    supabaseUrl,
+    supabaseKey
+);
+
+</script>
+
+<script>
+
+let userId = null;
+
+/* =========================
+   SAVE ASSET
+========================= */
+
+async function saveAssets(){
+
+    await supabaseClient
+    .from("assets")
+.delete()
+.eq("user_id", userId);
+
+    let cards = document.querySelectorAll("#assets .card");
+
+    for(let card of cards){
+
+        const name =
+        card.querySelector(".asset-name").value || null;
+
+        const price =
+        parseFloat(card.querySelector(".price").value) || 0;
+
+        const life =
+        parseFloat(card.querySelector(".life").value) || 0;
+
+        const roi =
+        parseFloat(card.querySelector(".roi").value) || 0;
+
+        const { error } = await supabaseClient
+        .from("assets")
+        .insert([{
+        user_id: userId,
+        name,
+        price,
+        life,
+         roi
+         }]);
+
+        if(error){
+            console.log(error);
+        }
+
+    }
+
+}
+
+/* =========================
+   LOAD ASSETS
+========================= */
+
+async function loadAssets(){
+
+    const { data } = await supabaseClient
+    .from("assets")
+.select("*")
+.eq("user_id", userId);
+
+    if(!data) return;
+
+    data.forEach(item=>{
+
+        addAsset();
+
+        let last = document.querySelector("#assets .card:last-child");
+
+        last.querySelector(".asset-name").value = item.name;
+        last.querySelector(".price").value = item.price;
+        last.querySelector(".life").value = item.life;
+        last.querySelector(".roi").value = item.roi;
+
+        last.querySelector(".asset-title").innerText =
+        item.name || "أصل جديد";
+
+    });
+
+}
+
+/* =========================
+   SAVE EXPENSES
+========================= */
+
+async function saveExpenses(){
+
+    await supabaseClient
+    .from("expenses")
+.delete()
+.eq("user_id", userId);
+
+    let cards = document.querySelectorAll("#expenses .card");
+
+    for(let card of cards){
+
+        const name =
+        card.querySelector(".exp-name").value || null;
+
+        const value =
+        parseFloat(card.querySelector(".exp").value) || 0;
+
+        const { error } = await supabaseClient
+        .from("expenses")
+       .insert([{
+    user_id: userId,
+    name,
+    value
+}]);
+
+        if(error){
+            console.log(error);
+        }
+
+    }
+
+}
+
+/* =========================
+   LOAD EXPENSES
+========================= */
+
+async function loadExpenses(){
+
+    const { data } = await supabaseClient
+   .from("expenses")
+.select("*")
+.eq("user_id", userId);
+
+    if(!data) return;
+
+    data.forEach(item=>{
+
+        addExpense();
+
+        let last = document.querySelector("#expenses .card:last-child");
+
+        last.querySelector(".exp-name").value = item.name;
+        last.querySelector(".exp").value = item.value;
+
+        last.querySelector(".exp-title").innerText =
+        item.name || "تكلفة جديدة";
+
+    });
+
+}
+
+/* =========================
+   SAVE SERVICES
+========================= */
+
+async function saveServices(){
+
+    await supabaseClient
+    .from("services")
+.delete()
+.eq("user_id", userId);
+
+    let cards = document.querySelectorAll("#services .card");
+
+    for(let card of cards){
+
+        const name =
+        card.querySelector(".name").value || null;
+
+        const mat =
+        parseFloat(card.querySelector(".mat").value) || 0;
+
+        const time =
+        parseFloat(card.querySelector(".time").value) || 0;
+
+        const profit =
+        parseFloat(card.querySelector(".profit").value) || 0;
+
+        const { error } = await supabaseClient
+        .from("services")
+        .insert([{
+    user_id: userId,
+    name,
+    mat,
+    time,
+    profit
+}]);
+
+        if(error){
+            console.log(error);
+        }
+
+    }
+
+}
+
+
+
+
+/* =========================
+   LOAD SERVICES
+========================= */
+
+async function loadServices(){
+
+    const { data } = await supabaseClient
+    .from("services")
+.select("*")
+.eq("user_id", userId);
+
+    if(!data) return;
+
+    data.forEach(item=>{
+
+        addService();
+
+        let last = document.querySelector("#services .card:last-child");
+
+        last.querySelector(".name").value = item.name;
+        last.querySelector(".mat").value = item.mat;
+        last.querySelector(".time").value = item.time;
+        last.querySelector(".profit").value = item.profit;
+
+        last.querySelector(".service-title").innerText =
+        item.name || "خدمة جديدة";
+
+    });
+
+}
+
+async function saveSettings(){
+
+    const { error } = await supabaseClient
+    .from("pricing_settings")
+    .upsert([{
+        user_id: userId,
+
+        asset_days: document.getElementById("assetDays").value || null,
+        asset_hours: document.getElementById("assetHours").value || null,
+        exp_days: document.getElementById("expDays").value || null,
+        exp_hours: document.getElementById("expHours").value || null
+    }], {
+        onConflict: "user_id"
+    });
+
+    if(error){
+        console.log("SETTINGS ERROR:", error);
+    }
+}
+
+/* =========================
+   LOAD SETTINGS
+========================= */
+
+async function loadSettings(){
+
+    const { data } = await supabaseClient
+    .from("pricing_settings")
+    .select("*")
+    .eq("user_id", userId)
+    .single();
+
+    if(!data) return;
+
+    document.getElementById("assetDays").value =
+    data.asset_days || "";
+
+    document.getElementById("assetHours").value =
+    data.asset_hours || "";
+
+    document.getElementById("expDays").value =
+    data.exp_days || "";
+
+    document.getElementById("expHours").value =
+    data.exp_hours || "";
+
+}
+
+
+/* =========================
+   AUTO SAVE
+========================= */
+
+setInterval(()=>{
+
+    saveAssets();
+    saveExpenses();
+    saveServices();
+    saveSettings();
+
+},5000);
+
+/* =========================
+   START
+========================= */
+
+window.onload = async () => {
+
+    const {
+        data: { user }
+    } = await supabaseClient.auth.getUser();
+
+    if (!user) {
+        window.location.href = "login.html";
+        return;
+    }
+
+    userId = user.id;
+
+    await loadAssets();
+    await loadExpenses();
+    await loadServices();
+    await loadSettings();
+
+    calcAssets();
+    calcExpenses();
+    calcServices();
+};
+
+</script>
+
+</body>
+</html>

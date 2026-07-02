@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dose Calculator</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+body{
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    background:linear-gradient(135deg,#020617,#0f172a,#111827);
+    color:white;
+    min-height:100vh;
+    padding:25px;
+}
+
+/* CARD */
+.card{
+    background:rgba(30,41,59,.75);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:20px;
+    padding:20px;
+    margin-bottom:20px;
+    backdrop-filter:blur(12px);
+}
+
+/* TITLE */
+h1{
+    font-size:24px;
+    color:#38bdf8;
+    margin-bottom:15px;
+}
+
+/* INPUTS */
+input, select{
+    width:100%;
+    padding:14px;
+    margin-top:10px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,.1);
+    background:#0f172a;
+    color:white;
+    outline:none;
+}
+
+input:focus, select:focus{
+    border-color:#38bdf8;
+}
+
+/* BUTTON */
+button{
+    width:100%;
+    margin-top:15px;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(135deg,#0ea5e9,#38bdf8);
+    color:white;
+    font-weight:700;
+    cursor:pointer;
+}
+
+button:hover{
+    transform:translateY(-2px);
+}
+
+/* RESULT */
+.result{
+    margin-top:15px;
+    padding:15px;
+    border-radius:12px;
+    background:rgba(56,189,248,.1);
+    border:1px solid rgba(56,189,248,.3);
+    display:none;
+}
+
+.result strong{
+    color:#38bdf8;
+}
+
+body{
+    padding-bottom:85px;
+}
+
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:70px;
+
+    background:#0f172a;
+
+    display:flex;
+
+    align-items:center;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+    box-shadow:0 -4px 20px rgba(0,0,0,.4);
+
+    z-index:99999;
+}
+
+.nav-item{
+    flex:1;   /* 👈 أهم سطر: يجعل كل عنصر يملأ الشريط */
+    
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    text-decoration:none;
+
+    color:#94a3b8;
+
+    font-size:11px;
+
+    gap:4px;
+
+    height:100%;
+}
+
+.nav-item i{
+    font-size:20px;
+}
+
+.nav-item.active{
+    color:#38bdf8;
+}
+
+.add-drug-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    padding:10px 14px;
+    margin-bottom:15px;
+
+    background:linear-gradient(135deg,#36af54,#0ef347);
+    color:white;
+    text-decoration:none;
+
+    border-radius:12px;
+    font-weight:700;
+    font-size:13px;
+
+    box-shadow:0 8px 20px rgba(56,189,248,.25);
+    transition:.25s;
+}
+
+.add-drug-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 25px rgba(56,189,248,.35);
+}
+
+.add-drug-btn:active{
+    transform:translateY(0);
+}
+
+/* زر تقدير الوزن */
+button[onclick="estimateWeight()"]{
+
+    width:auto;
+
+    padding:10px 16px;
+
+    margin-top:10px;
+
+    background:linear-gradient(
+        135deg,
+        #b45309,
+        #d97706
+    );
+
+    color:white;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 4px 12px rgba(217,119,6,.35);
+
+    transition:.25s;
+}
+
+button[onclick="estimateWeight()"]:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 8px 18px rgba(217,119,6,.45);
+}
+
+button[onclick="estimateWeight()"] i{
+
+    margin-right:6px;
+}
+
+.page-title{
+    text-align:center;
+    font-size:34px;
+    font-weight:800;
+    margin-bottom:30px;
+    letter-spacing:1px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+    color:#fff;
+    text-shadow:0 0 25px rgba(59,130,246,.5);
+}
+
+</style>
+
+</head>
+
+<body>
+
+     <h1 class="page-title">
+    <i class="fa-solid fa-pills"></i>
+    Dose Calculator
+</h1>
+
+<div class="card">
+
+<a href="drugs.html" class="add-drug-btn">
+    <i class="fa-solid fa-plus"></i>
+    Add New Drug
+</a>
+
+<h1><i class="fa-solid fa-calculator"></i> Dose Calculator</h1>
+<h6>جرعات الاطفال تبدا من سن 0 الى 11 , والبالغين من سن 12 فما اعلى</h6>
+<label>Age (years)</label>
+
+<input type="number" id="age" placeholder="Enter age">
+
+<label>Weight (kg)</label>
+<input type="number" id="weight" placeholder="Enter weight">
+
+<button onclick="estimateWeight()">
+    <i class="fa-solid fa-scale-balanced"></i>
+    Estimate Weight
+</button>
+
+<small id="weightHint"
+style="
+display:block;
+margin-top:10px;
+color:#fbbf24;
+">
+</small>
+
+<label>Select Drug</label>
+<select id="drugSelect">
+    <option value="">Loading drugs...</option>
+</select>
+
+<button onclick="calculateDose()">Calculate Dose</button>
+
+
+
+<div class="result" id="resultBox"></div>
+
+</div>
+
+<!-- شريط تنقل سفلي  -->
+<div class="bottom-nav">
+
+    <a href="dashboard.html" class="nav-item">
+        <i class="fa-solid fa-house"></i>
+        <span>الرئيسية</span>
+    </a>
+
+<a href="dashboard.html#appointmentssContainer" class="nav-item">
+    <i class="fa-solid fa-calendar-check"></i>
+    <span>الزيارات</span>
+</a>
+
+    <a href="patients.html" class="nav-item">
+        <i class="fa-solid fa-user-plus"></i>
+        <span>اضافة مريض</span>
+    </a>
+
+<a href="dashboard.html#patientsSection" class="nav-item">
+        <i class="fa-solid fa-users"></i>
+        <span>ملفات المرضى</span>
+    </a>
+
+  
+
+    <a href="Bill.html" class="nav-item">
+        <i class="fa-solid fa-file-invoice-dollar"></i>
+        <span>الفواتير</span>
+    </a>
+
+    <a href="labs.html" class="nav-item">
+        <i class="fa-solid fa-screwdriver-wrench"></i>
+        <span>المعامل</span>
+    </a>
+
+    <a href="doctors.html" class="nav-item">
+        <i class="fa-solid fa-user-doctor"></i>
+        <span>الأطباء</span>
+    </a>
+
+<a href="prints.html" class="nav-item">
+       <i class="fa-solid fa-file-prescription"></i>
+        <span>المطبوعات</span>
+    </a>
+
+ <a href="dashboard.html#analyticsSection" class="nav-item">
+        <i class="fa-solid fa-chart-line"></i>
+        <span>التقارير</span>
+    </a>
+
+    <a href="pricing.html" class="nav-item">
+        <i class="fa-solid fa-tags"></i>
+        <span>التسعير</span>
+    </a>
+
+    <a href="dose-calculator.html" class="nav-item active">
+    <i class="fa-solid fa-pills"></i>
+    <span>حاسبة الجرعات</span>
+</a>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase.js"></script>
+<script src="js/drugs.js"></script>
+<script src="js/dose-calculator.js"></script>
+
+</body>
+</html>

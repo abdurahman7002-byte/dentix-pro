@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Labs Management</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    padding:30px;
+    color:white;
+    background:
+    radial-gradient(circle at top left,#1e3a8a 0%,transparent 35%),
+    radial-gradient(circle at bottom right,#0891b2 0%,transparent 35%),
+    linear-gradient(135deg,#020617,#0f172a,#111827);
+}
+
+.page-title{
+    text-align:center;
+    font-size:34px;
+    font-weight:800;
+    margin-bottom:30px;
+    letter-spacing:1px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+    color:#fff;
+    text-shadow:0 0 25px rgba(59,130,246,.5);
+}
+
+.card{
+    width:100%;
+    max-width:900px;
+    margin:0 auto 25px auto;
+
+    background:rgba(30,41,59,.75);
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:24px;
+    padding:28px;
+
+    box-shadow:
+    0 10px 35px rgba(0,0,0,.35),
+    inset 0 1px 0 rgba(255,255,255,.05);
+
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-3px);
+}
+
+.card h3{
+    margin-bottom:20px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:20px;
+    color:#f8fafc;
+}
+
+input{
+    width:100%;
+    margin-top:14px;
+    padding:15px 18px;
+
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:16px;
+
+    background:rgba(51,65,85,.6);
+    color:white;
+
+    font-size:15px;
+    transition:.3s;
+}
+
+input::placeholder{
+    color:#94a3b8;
+}
+
+input:focus{
+    border-color:#3b82f6;
+    box-shadow:0 0 0 4px rgba(59,130,246,.15);
+    background:rgba(51,65,85,.9);
+}
+
+.btn{
+    margin-top:18px;
+    border:none;
+    cursor:pointer;
+    font-weight:700;
+    transition:.3s;
+}
+
+.primary{
+    width:100%;
+    padding:15px;
+
+    border-radius:16px;
+
+    background:
+    linear-gradient(
+    135deg,
+    #2563eb,
+    #06b6d4
+    );
+
+    color:white;
+    font-size:15px;
+
+    box-shadow:
+    0 10px 25px rgba(37,99,235,.35);
+}
+
+.primary:hover{
+    transform:translateY(-2px);
+    box-shadow:
+    0 14px 30px rgba(37,99,235,.45);
+}
+
+#labsContainer{
+    margin-top:15px;
+}
+
+.doctor-card{
+    background:
+    linear-gradient(
+    135deg,
+    rgba(51,65,85,.95),
+    rgba(30,41,59,.95)
+    );
+
+    border:1px solid rgba(255,255,255,.06);
+
+    border-radius:20px;
+
+    padding:20px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:15px;
+
+    transition:.3s;
+}
+
+.doctor-card:hover{
+    transform:translateY(-4px);
+    box-shadow:
+    0 12px 28px rgba(0,0,0,.25);
+}
+
+.doctor-name{
+    font-size:18px;
+    font-weight:700;
+    color:white;
+}
+
+.actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.open-btn{
+    border:none;
+    cursor:pointer;
+
+    padding:11px 16px;
+    border-radius:12px;
+
+    font-weight:600;
+    color:white;
+
+    background:
+    linear-gradient(
+    135deg,
+    #10b981,
+    #14b8a6
+    );
+
+    transition:.3s;
+}
+
+.open-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:
+    0 10px 20px rgba(16,185,129,.35);
+}
+
+.delete-btn{
+    border:none;
+    cursor:pointer;
+
+    padding:11px 16px;
+    border-radius:12px;
+
+    font-weight:600;
+    color:white;
+
+    background:
+    linear-gradient(
+    135deg,
+    #ef4444,
+    #dc2626
+    );
+
+    transition:.3s;
+}
+
+.delete-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:
+    0 10px 20px rgba(239,68,68,.35);
+}
+
+.back-btn{
+    width:100%;
+
+    border:none;
+    cursor:pointer;
+
+    padding:15px;
+
+    border-radius:16px;
+
+    color:white;
+    font-weight:700;
+    font-size:15px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+
+    background:
+    linear-gradient(
+    135deg,
+    #37db4d,
+    #3b8d4f
+    );
+
+    position:relative;
+    overflow:hidden;
+
+    transition:.35s;
+
+    box-shadow:
+    0 10px 25px rgba(99,102,241,.35);
+}
+
+.back-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:
+    0 15px 35px rgba(2, 247, 15, 0.45);
+}
+
+.back-btn::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-120%;
+    width:60%;
+    height:100%;
+
+    background:
+    linear-gradient(
+    90deg,
+    transparent,
+    rgba(8, 224, 26, 0.3),
+    transparent
+    );
+
+    transform:skewX(-25deg);
+    transition:.7s;
+}
+
+.back-btn:hover::before{
+    left:140%;
+}
+
+@media(max-width:768px){
+
+    body{
+        padding:15px;
+    }
+
+    .page-title{
+        font-size:26px;
+    }
+
+    .doctor-card{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:15px;
+    }
+
+    .actions{
+        width:100%;
+    }
+
+    .open-btn,
+    .delete-btn{
+        flex:1;
+    }
+
+    .card{
+        padding:20px;
+    }
+}
+body{
+    padding-bottom:85px;
+}
+
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:70px;
+
+    background:#0f172a;
+
+    display:flex;
+
+    align-items:center;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+    box-shadow:0 -4px 20px rgba(0,0,0,.4);
+
+    z-index:99999;
+}
+
+.nav-item{
+    flex:1;   /* 👈 أهم سطر: يجعل كل عنصر يملأ الشريط */
+    
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    text-decoration:none;
+
+    color:#94a3b8;
+
+    font-size:11px;
+
+    gap:4px;
+
+    height:100%;
+}
+
+.nav-item i{
+    font-size:20px;
+}
+
+.nav-item.active{
+    color:#38bdf8;
+}
+
+.lab-details{
+    margin-bottom:20px;
+    border:none;
+}
+
+.lab-summary{
+    list-style:none;
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+
+    padding:16px 20px;
+
+    border-radius:18px;
+
+    background:linear-gradient(135deg,#06b6d4,#6366f1);
+
+    color:white;
+    font-size:16px;
+    font-weight:700;
+
+    box-shadow:0 10px 25px rgba(99,102,241,.25);
+
+    transition:.3s ease;
+}
+
+.lab-summary:hover{
+    transform:translateY(-2px);
+}
+
+.lab-summary::-webkit-details-marker{
+    display:none;
+}
+
+.arrow{
+    transition:.3s;
+}
+
+.lab-details[open] .arrow{
+    transform:rotate(180deg);
+}
+
+.lab-form{
+    margin-top:15px;
+
+    padding:20px;
+
+    background:#0f172a;
+
+    border-radius:18px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.dashboard-divider{
+    height:1px;
+    width:100%;
+    margin:25px 0;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(128,255,219,.6),
+        transparent
+    );
+
+    position:relative;
+}
+
+/* نقطة في المنتصف */
+.dashboard-divider::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+
+    width:8px;
+    height:8px;
+    border-radius:50%;
+
+    background:#80ffdb;
+    box-shadow:0 0 10px #80ffdb;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1 class="page-title">
+    <i class="fa-solid fa-teeth"></i>
+    Labs Management
+</h1>
+
+<details class="lab-details">
+
+    <summary class="lab-summary">
+        <i class="fa-solid fa-flask"></i>
+        Add New Lab - إضافة معمل
+        <i class="fa-solid fa-chevron-down arrow"></i>
+    </summary>
+
+    <div class="lab-form">
+
+        <input id="labName" placeholder="Lab Name">
+
+        <input id="specialization" placeholder="Specialization">
+
+        <input id="address" placeholder="Address">
+
+        <input id="phone" placeholder="Phone Number">
+
+        <button onclick="saveLab()" class="btn primary">
+            Save Lab
+        </button>
+
+    </div>
+
+</details>
+
+
+
+<div class="card">
+    <button class="back-btn" onclick="goToDashboard()">
+    ← Back to Dashboard
+</button>
+</div>
+
+  <!-- فاصل  -->
+<div class="dashboard-divider"></div>
+
+<!-- LABS LIST -->
+
+<div class="card">
+
+    <h3>
+        <i class="fa-solid fa-list"></i>
+        Labs List - قائمة المعامل
+    </h3>
+
+    <div id="labsContainer"></div>
+
+</div>
+<!-- شريط تنقل سفلي  -->
+<div class="bottom-nav">
+
+    <a href="dashboard.html" class="nav-item">
+        <i class="fa-solid fa-house"></i>
+        <span>الرئيسية</span>
+    </a>
+
+<a href="dashboard.html#appointmentssContainer" class="nav-item">
+    <i class="fa-solid fa-calendar-check"></i>
+    <span>الزيارات</span>
+</a>
+
+    <a href="patients.html" class="nav-item">
+        <i class="fa-solid fa-user-plus"></i>
+        <span>اضافة مريض</span>
+    </a>
+
+<a href="dashboard.html#patientsSection" class="nav-item">
+        <i class="fa-solid fa-users"></i>
+        <span>ملفات المرضى</span>
+    </a>
+
+  
+
+    <a href="Bill.html" class="nav-item">
+        <i class="fa-solid fa-file-invoice-dollar"></i>
+        <span>الفواتير</span>
+    </a>
+
+    <a href="labs.html" class="nav-item active">
+        <i class="fa-solid fa-screwdriver-wrench"></i>
+        <span>المعامل</span>
+    </a>
+
+    <a href="doctors.html" class="nav-item">
+        <i class="fa-solid fa-user-doctor"></i>
+        <span>الأطباء</span>
+    </a>
+
+<a href="prints.html" class="nav-item">
+       <i class="fa-solid fa-file-prescription"></i>
+        <span>المطبوعات</span>
+    </a>
+
+ <a href="dashboard.html#analyticsSection" class="nav-item">
+        <i class="fa-solid fa-chart-line"></i>
+        <span>التقارير</span>
+    </a>
+
+    <a href="pricing.html" class="nav-item">
+        <i class="fa-solid fa-tags"></i>
+        <span>التسعير</span>
+    </a>
+
+    <a href="dose-calculator.html" class="nav-item">
+    <i class="fa-solid fa-pills"></i>
+    <span>حاسبة الجرعات</span>
+</a>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="js/supabase.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/labs.js"></script>
+
+</body>
+</html>

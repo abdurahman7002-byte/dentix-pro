@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Drugs Manager</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+/* =========================
+   BASE
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:
+        radial-gradient(circle at top, #0f172a, #020617);
+    color:white;
+    min-height:100vh;
+    padding:25px;
+    padding-bottom:90px;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container{
+    max-width:1200px;
+    margin:auto;
+}
+
+/* =========================
+   TITLE
+========================= */
+
+.page-title{
+    text-align:center;
+    margin-bottom:25px;
+    font-size:34px;
+    font-weight:900;
+    background: linear-gradient(90deg,#38bdf8,#60a5fa,#22c55e);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    letter-spacing:1px;
+}
+
+/* =========================
+   CARDS (GLASS EFFECT)
+========================= */
+
+.card{
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 24px;
+    padding: 25px;
+    margin-bottom:20px;
+    backdrop-filter: blur(18px);
+    box-shadow: 0 12px 40px rgba(0,0,0,.45);
+    transition:.3s;
+}
+
+.card:hover{
+    transform: translateY(-2px);
+    border-color: rgba(56,189,248,.3);
+}
+
+/* =========================
+   SECTION TITLE
+========================= */
+
+.section-title{
+    margin-bottom:15px;
+    color:#38bdf8;
+    font-size:20px;
+    font-weight:800;
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+/* =========================
+   FORM GRID
+========================= */
+
+.form-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+    gap:14px;
+}
+
+/* =========================
+   INPUTS
+========================= */
+
+input,
+select,
+textarea{
+    width:100%;
+    padding:14px;
+    border-radius:14px;
+    border:1px solid rgba(255,255,255,0.08);
+    background: rgba(15,23,42,0.6);
+    color:white;
+    outline:none;
+    transition:.2s;
+    font-size:14px;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:#38bdf8;
+    box-shadow:0 0 0 3px rgba(56,189,248,.15);
+}
+
+/* =========================
+   TEXTAREA
+========================= */
+
+textarea{
+    min-height:120px;
+    margin-top:15px;
+}
+
+/* =========================
+   SAVE BUTTON
+========================= */
+
+.save-btn{
+    margin-top:15px;
+    width:100%;
+    border:none;
+    padding:15px;
+    border-radius:14px;
+    font-weight:800;
+    color:white;
+    cursor:pointer;
+    background: linear-gradient(135deg,#0ea5e9,#22c55e);
+    box-shadow:0 10px 25px rgba(34,197,94,.25);
+    transition:.25s;
+}
+
+.save-btn:hover{
+    transform:translateY(-2px);
+}
+
+.save-btn:active{
+    transform:scale(.98);
+}
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-box{
+    margin-bottom:15px;
+}
+
+/* =========================
+   DRUG CARDS
+========================= */
+
+.drugs-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
+    gap:18px;
+}
+
+.drug-card{
+    background: rgba(15,23,42,0.85);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius:18px;
+    padding:18px;
+    transition:.25s;
+    position:relative;
+    overflow:hidden;
+}
+
+.drug-card::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:3px;
+    background: linear-gradient(90deg,#38bdf8,#22c55e);
+}
+
+.drug-card:hover{
+    transform: translateY(-5px);
+    border-color:#38bdf8;
+}
+
+/* DRUG NAME */
+
+.drug-name{
+    font-size:18px;
+    font-weight:900;
+    margin-bottom:8px;
+    color:#fff;
+}
+
+/* BADGE */
+
+.badge{
+    display:inline-block;
+    padding:5px 10px;
+    border-radius:999px;
+    background: rgba(56,189,248,0.12);
+    color:#38bdf8;
+    font-size:12px;
+    margin-bottom:12px;
+}
+
+/* TEXT */
+
+.drug-card p{
+    margin-bottom:6px;
+    color:#cbd5e1;
+    font-size:13px;
+}
+
+/* =========================
+   DELETE BUTTON
+========================= */
+
+.delete-btn{
+    width:100%;
+    margin-top:14px;
+    border:none;
+    padding:12px;
+    border-radius:12px;
+    cursor:pointer;
+    color:white;
+    font-weight:700;
+    background: linear-gradient(135deg,#ef4444,#dc2626);
+    transition:.2s;
+}
+
+.delete-btn:hover{
+    transform:translateY(-2px);
+}
+
+/* =========================
+   ANIMATION
+========================= */
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(10px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+.drug-card{
+    animation: fadeIn .3s ease;
+}
+
+/* =========================
+   IMPORTANT: DO NOT TOUCH NAV BAR
+   (kept exactly as yours)
+========================= */
+
+body{
+    padding-bottom:85px;
+}
+
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:70px;
+
+    background:#0f172a;
+
+    display:flex;
+
+    align-items:center;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+    box-shadow:0 -4px 20px rgba(0,0,0,.4);
+
+    z-index:99999;
+}
+
+.nav-item{
+    flex:1;   /* 👈 أهم سطر: يجعل كل عنصر يملأ الشريط */
+    
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    text-decoration:none;
+
+    color:#94a3b8;
+
+    font-size:11px;
+
+    gap:4px;
+
+    height:100%;
+}
+
+.nav-item i{
+    font-size:20px;
+}
+
+.nav-item.active{
+    color:#38bdf8;
+}
+
+.toast{
+    position:fixed;
+    bottom:90px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#0f172a;
+    color:white;
+    padding:12px 18px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,.1);
+    box-shadow:0 10px 25px rgba(0,0,0,.4);
+    font-size:14px;
+    opacity:0;
+    pointer-events:none;
+    transition:.3s;
+    z-index:999999;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translateX(-50%) translateY(-10px);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1 class="page-title">
+💊 Drugs Manager
+</h1>
+
+<div class="card">
+
+<h2 class="section-title">
+Add New Drug
+</h2>
+
+<div class="form-grid">
+
+<input
+id="drugName"
+placeholder="ex: Hibiotic 600mg susp">
+
+<select id="category">
+<option value="">
+Select Category
+</option>
+</select>
+
+<input
+id="concentration"
+placeholder="Concentration per 5 ml">
+
+<select id="dosageForm" onchange="changeConcentrationPlaceholder()">
+
+    <option value="">
+        Select Dosage Form
+    </option>
+
+    <option value="Suspension">
+        Suspension
+    </option>
+
+    <option value="Tablet">
+        Tablet
+    </option>
+
+    <option value="Capsule">
+        Capsule
+    </option>
+
+    <option value="Syrup">
+        Syrup
+    </option>
+
+    <option value="Drops">
+        Drops
+    </option>
+
+    <option value="Injection">
+        Injection
+    </option>
+
+
+    <option value="Suppository">
+        Suppository
+    </option>
+
+    <option value="Inhaler">
+        Inhaler
+    </option>
+
+</select>
+
+<input
+id="minAge"
+type="number"
+placeholder="Min Age (optional)">
+
+<input
+id="maxAge"
+type="number"
+placeholder="Max Age(optional)">
+
+<input
+id="mgPerKg"
+type="number"
+step="0.01"
+placeholder="mg/kg/day">
+
+<input
+id="frequency"
+type="number"
+placeholder="Frequency Per Day">
+
+<input
+id="maxDose"
+type="number"
+placeholder="Max Daily Dose by mg / day">
+
+<input
+id="duration"
+type="number"
+placeholder="Duration Days(optional)">
+
+</div>
+
+<textarea
+id="notes"
+placeholder="Notes (optional) 
+ liver , kidney disease , drugs interations , pregnancies ">
+</textarea>
+
+<button
+class="save-btn"
+onclick="saveDrug()">
+Save Drug
+</button>
+
+</div>
+
+<div class="card">
+
+<h2 class="section-title">
+Saved Drugs
+</h2>
+
+<div class="search-box">
+
+<input
+id="searchInput"
+placeholder="Search Drug..."
+onkeyup="loadDrugs()">
+
+</div>
+
+<div
+id="drugsContainer"
+class="drugs-grid">
+</div>
+
+</div>
+
+</div>
+
+<!-- شريط تنقل سفلي  -->
+<div class="bottom-nav">
+
+    <a href="dashboard.html" class="nav-item">
+        <i class="fa-solid fa-house"></i>
+        <span>الرئيسية</span>
+    </a>
+
+<a href="dashboard.html#appointmentssContainer" class="nav-item">
+    <i class="fa-solid fa-calendar-check"></i>
+    <span>الزيارات</span>
+</a>
+
+    <a href="patients.html" class="nav-item">
+        <i class="fa-solid fa-user-plus"></i>
+        <span>اضافة مريض</span>
+    </a>
+
+<a href="dashboard.html#patientsSection" class="nav-item">
+        <i class="fa-solid fa-users"></i>
+        <span>ملفات المرضى</span>
+    </a>
+
+  
+
+    <a href="Bill.html" class="nav-item">
+        <i class="fa-solid fa-file-invoice-dollar"></i>
+        <span>الفواتير</span>
+    </a>
+
+    <a href="labs.html" class="nav-item">
+        <i class="fa-solid fa-screwdriver-wrench"></i>
+        <span>المعامل</span>
+    </a>
+
+    <a href="doctors.html" class="nav-item">
+        <i class="fa-solid fa-user-doctor"></i>
+        <span>الأطباء</span>
+    </a>
+
+<a href="prints.html" class="nav-item">
+       <i class="fa-solid fa-file-prescription"></i>
+        <span>المطبوعات</span>
+    </a>
+
+ <a href="dashboard.html#analyticsSection" class="nav-item">
+        <i class="fa-solid fa-chart-line"></i>
+        <span>التقارير</span>
+    </a>
+
+    <a href="pricing.html" class="nav-item">
+        <i class="fa-solid fa-tags"></i>
+        <span>التسعير</span>
+    </a>
+
+    <a href="dose-calculator.html" class="nav-item active">
+    <i class="fa-solid fa-pills"></i>
+    <span>حاسبة الجرعات</span>
+</a>
+
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="js/supabase.js"></script>
+<script src="js/auth.js"></script>
+
+<script src="js/drugs.js"></script>
+
+</body>
+</html>

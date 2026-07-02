@@ -1,0 +1,3156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Patient File</title>
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+
+    background:
+    radial-gradient(circle at top left,#1d3557 0%,transparent 25%),
+    radial-gradient(circle at bottom right,#2a9d8f 0%,transparent 25%),
+    #0b1120;
+
+    color:white;
+
+    min-height:100vh;
+
+    padding:30px;
+}
+
+/* CONTAINER */
+
+.container{
+    max-width:1200px;
+    margin:auto;
+}
+
+/* HEADER */
+
+.page-header{
+
+    text-align:center;
+
+    margin-bottom:30px;
+}
+
+.page-header h1{
+
+    font-size:42px;
+
+    margin-bottom:20px;
+
+    background:linear-gradient(to right,#4cc9f0,#80ffdb);
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+/* CARD */
+
+.card{
+
+    background:rgba(255,255,255,0.05);
+
+    backdrop-filter:blur(14px);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    border-radius:26px;
+
+    padding:28px;
+
+    margin-bottom:25px;
+
+    box-shadow:
+    0 10px 35px rgba(0,0,0,0.35);
+
+    transition:0.3s ease;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+}
+
+.card h2{
+
+    margin-bottom:22px;
+
+    color:#80ffdb;
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+/* BUTTONS */
+
+button{
+
+    border:none;
+
+    padding:14px 22px;
+
+    border-radius:16px;
+
+    cursor:pointer;
+
+    font-size:15px;
+    font-weight:600;
+
+    transition:0.3s ease;
+
+    position:relative;
+    overflow:hidden;
+
+    margin-top:10px;
+}
+
+button::before{
+
+    content:'';
+
+    position:absolute;
+
+    top:0;
+    left:-100%;
+
+    width:100%;
+    height:100%;
+
+    background:rgba(255,255,255,0.15);
+
+    transition:0.5s;
+}
+
+button:hover::before{
+    left:100%;
+}
+
+button:hover{
+    transform:translateY(-3px) scale(1.03);
+}
+
+/* BUTTON COLORS */
+
+.primary-btn{
+
+    background:linear-gradient(135deg,#2563eb,#3b82f6);
+
+    color:white;
+
+    box-shadow:
+    0 8px 20px rgba(37,99,235,0.35);
+}
+
+.green-btn{
+
+    background:linear-gradient(135deg,#00b4d8,#48cae4);
+
+    color:white;
+
+    box-shadow:
+    0 8px 20px rgba(0,180,216,0.35);
+}
+
+.red-btn{
+
+    background:linear-gradient(135deg,#ef476f,#ff5d8f);
+
+    color:white;
+
+    box-shadow:
+    0 8px 20px rgba(239,71,111,0.35);
+}
+
+.purple-btn{
+
+    background:linear-gradient(135deg,#8338ec,#c77dff);
+
+    color:white;
+
+    box-shadow:
+    0 8px 20px rgba(131,56,236,0.35);
+}
+
+/* INPUTS */
+
+input,
+textarea,
+details,
+summary{
+
+    font-size:15px;
+}
+
+input,
+textarea{
+
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+    outline:none;
+
+    border-radius:16px;
+
+    background:#101826;
+
+    color:white;
+
+    margin-top:12px;
+
+    transition:0.3s;
+}
+
+input:focus,
+textarea:focus{
+
+    box-shadow:
+    0 0 0 3px rgba(72,202,228,0.35);
+
+    transform:translateY(-2px);
+}
+
+textarea{
+
+    min-height:120px;
+
+    resize:vertical;
+}
+
+input::placeholder,
+textarea::placeholder{
+    color:#94a3b8;
+}
+
+/* IMAGES */
+
+#imagesContainer img{
+
+    width:220px;
+    height:220px;
+
+    object-fit:cover;
+
+    border-radius:20px;
+
+    border:2px solid rgba(255,255,255,0.08);
+
+    transition:0.3s;
+}
+
+#imagesContainer img:hover{
+
+    transform:scale(1.04);
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,0.4);
+}
+
+/* DETAILS */
+
+details{
+
+    background:rgba(255,255,255,0.03);
+
+    padding:18px;
+
+    border-radius:18px;
+
+    margin-top:10px;
+}
+
+summary{
+
+    cursor:pointer;
+
+    color:#80ffdb;
+
+    font-weight:600;
+
+    margin-bottom:15px;
+}
+
+/* LABELS */
+
+label{
+
+    display:block;
+
+    margin-top:15px;
+
+    color:#b8c1ec;
+}
+
+/* FLOATING ICONS */
+
+.floating-icon{
+
+    position:fixed;
+
+    color:rgba(255,255,255,0.07);
+
+    font-size:45px;
+
+    animation:float 6s ease-in-out infinite;
+
+    pointer-events:none;
+}
+
+.icon1{
+    top:10%;
+    left:5%;
+}
+
+.icon2{
+    bottom:12%;
+    right:7%;
+    animation-delay:2s;
+}
+
+.icon3{
+    top:50%;
+    right:12%;
+    animation-delay:1s;
+}
+
+@keyframes float{
+
+    0%{
+        transform:translateY(0px) rotate(0deg);
+    }
+
+    50%{
+        transform:translateY(-18px) rotate(8deg);
+    }
+
+    100%{
+        transform:translateY(0px) rotate(0deg);
+    }
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    body{
+        padding:15px;
+    }
+
+    .page-header h1{
+        font-size:32px;
+    }
+
+    .card{
+        padding:22px;
+    }
+
+   #imagesContainer img{
+    width:auto;
+    height:auto;
+    max-width:100%;
+    display:block;
+}
+
+    button{
+        width:100%;
+    }
+
+}
+
+/* IMAGE BOX */
+
+.image-box{
+
+    position:relative;
+
+    width:220px;
+    height:220px;
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    border:2px solid rgba(255,255,255,0.08);
+
+    background:rgba(255,255,255,0.04);
+
+    transition:0.3s ease;
+}
+
+.image-box:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+    0 14px 30px rgba(0,0,0,0.35);
+}
+
+/* IMAGE */
+
+.image-box img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    background: rgba(0,0,0,0.2);
+}
+
+/* IMAGE TYPE */
+
+.image-type{
+
+    position:absolute;
+
+    top:10px;
+    left:10px;
+
+    background:rgba(0,0,0,0.55);
+
+    backdrop-filter:blur(8px);
+
+    color:white;
+
+    padding:7px 12px;
+
+    border-radius:12px;
+
+    font-size:13px;
+    font-weight:600;
+
+    text-transform:capitalize;
+}
+
+/* DELETE Image BUTTON */
+
+.delete-image-btn{
+
+    position:absolute;
+
+    bottom:10px;
+    right:10px;
+
+    width:38px;
+    height:38px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:
+    linear-gradient(135deg,#ef476f,#c9184a);
+
+    color:white;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    cursor:pointer;
+
+    box-shadow:
+    0 6px 16px rgba(201,24,74,0.4);
+
+    transition:0.25s ease;
+
+    padding:0;
+}
+
+/* HOVER */
+
+.delete-image-btn:hover{
+
+    transform:scale(1.12);
+
+    box-shadow:
+    0 10px 22px rgba(201,24,74,0.5);
+}
+
+/* ICON */
+
+.delete-image-btn i{
+
+    font-size:14px;
+}
+
+/* EMPTY */
+
+.no-images{
+
+    width:100%;
+
+    text-align:center;
+
+    padding:40px;
+
+    color:#94a3b8;
+
+    font-size:16px;
+}
+
+#imagesContainer,
+#afterImagesContainer{
+
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+/* NOTES */
+
+#notesContainer{
+
+    margin-top:25px;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:20px;
+}
+
+/* NOTE CARD */
+
+.note-card{
+
+    background:rgba(255,255,255,0.05);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    border-left:5px solid #48cae4;
+
+    border-radius:22px;
+
+    padding:22px;
+
+    transition:0.3s ease;
+
+    box-shadow:
+    0 8px 24px rgba(0,0,0,0.25);
+}
+
+.note-card:hover{
+
+    transform:translateY(-4px);
+
+    background:rgba(255,255,255,0.07);
+}
+
+/* HEADER */
+
+.note-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+
+    margin-bottom:18px;
+}
+
+.note-title{
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    font-size:18px;
+    font-weight:700;
+
+    color:#80ffdb;
+}
+
+.note-date{
+
+    color:#94a3b8;
+
+    font-size:13px;
+
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+/* TEXTAREA */
+
+.note-textarea{
+
+    width:100%;
+
+    min-height:120px;
+
+    background:#101826;
+
+    border:none;
+
+    border-radius:16px;
+
+    padding:18px;
+
+    color:white;
+
+    font-size:15px;
+
+    line-height:1.8;
+
+    resize:vertical;
+
+    outline:none;
+
+    transition:0.3s;
+}
+
+.note-textarea:focus{
+
+    box-shadow:
+    0 0 0 3px rgba(72,202,228,0.35);
+}
+
+/* ACTIONS */
+
+.note-actions{
+
+    display:flex;
+
+    gap:12px;
+
+    margin-top:18px;
+
+    flex-wrap:wrap;
+}
+
+/* UPDATE BUTTON */
+
+.update-note-btn{
+
+    border:none;
+
+    padding:12px 18px;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    color:white;
+
+    font-size:14px;
+    font-weight:600;
+
+    background:
+    linear-gradient(135deg,#00b4d8,#48cae4);
+
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    transition:0.3s ease;
+}
+
+.update-note-btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+    0 10px 22px rgba(0,180,216,0.35);
+}
+
+/* DELETE BUTTON */
+
+.delete-note-btn{
+
+    border:none;
+
+    padding:12px 18px;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    color:white;
+
+    font-size:14px;
+    font-weight:600;
+
+    background:
+    linear-gradient(135deg,#ef476f,#c9184a);
+
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    transition:0.3s ease;
+}
+
+.delete-note-btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+    0 10px 22px rgba(201,24,74,0.4);
+}
+
+/* EMPTY */
+
+.no-notes{
+
+    text-align:center;
+
+    padding:35px;
+
+    color:#94a3b8;
+
+    font-size:16px;
+}
+
+/* IMAGE UPLOAD BUTTON */
+
+.upload-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:13px 18px;
+
+    border-radius:16px;
+
+    cursor:pointer;
+
+    color:white;
+
+    font-size:14px;
+    font-weight:600;
+
+    background:
+    linear-gradient(135deg,#8338ec,#c77dff);
+
+    box-shadow:
+    0 8px 20px rgba(131,56,236,0.35);
+
+    transition:0.3s ease;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.upload-btn::before{
+
+    content:'';
+
+    position:absolute;
+
+    top:0;
+    left:-100%;
+
+    width:100%;
+    height:100%;
+
+    background:
+    rgba(255,255,255,0.15);
+
+    transition:0.5s;
+}
+
+.upload-btn:hover::before{
+    left:100%;
+}
+
+.upload-btn:hover{
+
+    transform:
+    translateY(-3px)
+    scale(1.03);
+}
+
+/* XRAY COLOR */
+
+.xray-btn{
+
+    background:
+    linear-gradient(135deg,#00b4d8,#48cae4);
+
+    box-shadow:
+    0 8px 20px rgba(0,180,216,0.35);
+}
+
+.image-modal{
+
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,0.9);
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    z-index:9999;
+
+    overflow:hidden;
+}
+
+.image-modal img{
+
+    max-width:none;
+
+    cursor:grab;
+
+    transition:transform 0.05s;
+}
+
+/* toast */
+.toast {
+    position: fixed;
+    bottom: 90px; /* رفعه فوق شريط التنقل السفلي */
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+
+    background: #1f2937;
+    color: white;
+
+    padding: 14px 20px;
+    border-radius: 12px;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: all 0.4s ease;
+
+    z-index: 99999; /* أعلى من أي bottom nav */
+    max-width: 90%;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* show state */
+.toast.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* TOOTH CHART */
+
+#toothChart{
+
+    display:flex;
+    flex-wrap:wrap;
+
+    gap:12px;
+
+    justify-content:center;
+}
+
+.tooth{
+
+    width:60px;
+    height:60px;
+
+    border-radius:16px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:0.3s ease;
+
+    color:white;
+
+    background:#ef476f;
+
+    box-shadow:
+    0 8px 20px rgba(239,71,111,0.25);
+}
+
+.tooth:hover{
+
+    transform:translateY(-4px) scale(1.05);
+}
+
+
+/* =========================
+   TOOTH STATES COLORS
+========================= */
+
+/* HEALTHY */
+
+.tooth.healthy{
+    background:linear-gradient(135deg,#19c713,#11c939);
+}
+
+/* CARIES */
+
+.tooth.caries{
+    background:linear-gradient(135deg,#a5992e,#d1c627);
+}
+
+/* DECAYED */
+
+.tooth.decayed{
+    background:linear-gradient(135deg,#c6c913,#c4b217);
+}
+
+/* MISSING */
+
+.tooth.missing{
+    background:linear-gradient(135deg,#fc0303,#dd0707);
+}
+
+/* NON RESTORABLE */
+
+.tooth.non_restorable{
+    background:linear-gradient(135deg,#751c1c,#8d1111);
+}
+
+/* FILLING */
+
+.tooth.filling{
+    background:linear-gradient(135deg,#054dd3,#48cae4);
+}
+
+/* POOR FILLING */
+
+.tooth.poor_filling{
+    background:linear-gradient(135deg,#ff8800,#ffb703);
+}
+
+/* VENEERED */
+
+.tooth.veneered{
+    background:linear-gradient(135deg,#f5f5f5,#dfe7fd);
+    color:#111;
+}
+
+/* OVERLAY */
+
+.tooth.overlay{
+    background:linear-gradient(135deg,#c6cccc,#c6d6d5);
+}
+
+/* CROWNED */
+
+.tooth.crowned{
+    background:linear-gradient(135deg,#1e89aa,#1499b1);
+    color:#111;
+}
+
+/* POOR CROWN */
+
+.tooth.poor_crown{
+    background:linear-gradient(135deg,#e76f51,#f4a261);
+}
+
+/* RCT */
+
+.tooth.rct{
+    background:linear-gradient(135deg,#06d6a0,#1b9aaa);
+}
+
+/* POOR RCT */
+
+.tooth.poor_rct{
+    background:linear-gradient(135deg,#9d0208,#dc2f02);
+}
+
+/* ENDO CROWN */
+
+.tooth.endo_crown{
+    background:linear-gradient(135deg,#00afb9,#0081a7);
+}
+
+/* CROWN + ENDO */
+
+.tooth.crowned_endo{
+    background:linear-gradient(135deg,#2a9d8f,#e9c46a);
+    color:#111;
+}
+
+/* PERIAPICAL LESION */
+
+.tooth.periapical_lesion{
+    background:linear-gradient(135deg,#610c0c,#c1121f);
+}
+
+/* ABUTMENT */
+
+.tooth.abutment{
+    background:linear-gradient(135deg,#be0ba7,#aa0c95);
+}
+
+/* DISCOLORATION */
+
+.tooth.discoloration{
+    background:linear-gradient(135deg,#b088687e,#755b4063);
+    color:#111;
+}
+
+/* IMPACTED */
+
+.tooth.impacted{
+    background:linear-gradient(135deg,#853496,#851a8f);
+}
+
+/* POCKET */
+
+.tooth.pocket{
+    background:linear-gradient(135deg,#1b3038,#16312e);
+}
+
+/* RECESSION */
+
+.tooth.recession{
+    background:linear-gradient(135deg,#c57122,#7a8b18);
+    color:#111;
+}
+
+/* MOBILITY */
+
+.tooth.mobility{
+    background:linear-gradient(135deg,#ff006e,#ff4d6d);
+}
+
+/* ROOT CARIES */
+
+.tooth.root_caries{
+    background:linear-gradient(135deg,#972222,#962727);
+}
+
+/* MALALIGNED */
+
+.tooth.malaligned{
+    background:linear-gradient(135deg,#577590,#90be6d);
+}
+
+/* TILTED */
+
+.tooth.tilted{
+    background:linear-gradient(135deg,#4361ee,#4cc9f0);
+}
+
+/* OVER ERUPTION */
+
+.tooth.over_eruption{
+    background:linear-gradient(135deg,#2ec4b6,#cbf3f0);
+    color:#111;
+}
+
+/* UNDER ERUPTION */
+
+.tooth.under_eruption{
+    background:linear-gradient(135deg,#8d99ae,#edf2f4);
+    color:#111;
+}
+
+/* ANKYLOSED */
+
+.tooth.ankylosed{
+    background:linear-gradient(135deg,#5a189a,#9d4edd);
+}
+
+/* IMPLANT */
+
+.tooth.implant{
+    background:linear-gradient(135deg,#24be16,#14b63c);
+    color:#111;
+}
+
+
+/* PONTIC */
+
+.tooth.pontic{
+    background:linear-gradient(135deg,#6a4c93,#9d79bc);
+}
+
+/* PULPOTOMY */
+
+.tooth.pulpotomy{
+    background:linear-gradient(135deg,#ff9f1c,#ffbf69);
+    color:#111;
+}
+
+/* PULPECTOMY */
+
+.tooth.pulpectomy{
+    background:linear-gradient(135deg,#d00000,#ff595e);
+}
+
+.tooth.retained_d_impaction{
+    background:linear-gradient(135deg,#7b2cbf,#9d4edd);
+    color:white;
+}
+
+.tooth.retained_d_missing{
+    background:linear-gradient(135deg,#5a189a,#7b2cbf);
+    color:white;
+}
+
+.tooth.pulpotomy_stainless_crown{
+    background:linear-gradient(135deg,#6c757d,#adb5bd);
+    color:white;
+}
+
+.tooth.pulpectomy_stainless_crown{
+    background:linear-gradient(135deg,#495057,#868e96);
+    color:white;
+}
+
+.tooth.inlay{
+    background:linear-gradient(135deg,#ffb703,#ffd166);
+    color:#222;
+}
+
+.tooth.onlay{
+    background:linear-gradient(135deg,#fb8500,#ffb703);
+    color:white;
+}
+
+.tooth.veneered_comp{
+    background:linear-gradient(135deg,#f8edeb,#e9d8a6);
+    color:#222;
+}
+
+.tooth.veneered_emax{
+    background:linear-gradient(135deg,#f1faee,#cfe1b9);
+    color:#222;
+}
+
+.tooth.fracture{
+    background:#ef4444;
+}
+
+.tooth.attrition{
+    background:#f59e0b;
+}
+
+.tooth.perio_endo_lesion{
+    background:#7c3aed;
+}
+
+.tooth.pulpotomy_zirconia_pedo_crown{
+    background:#06b6d4;
+}
+
+.tooth.pulpectomy_zirconia_pedo_crown{
+    background:#0ea5e9;
+}
+
+.tooth.root_resorption{
+    background:#dc2626;
+}
+
+.tooth.internal_resorption{
+    background:#b91c1c;
+}
+
+.tooth.root_fracture{
+    background:#7f1d1d;
+}
+
+.tooth.pulp_polyp{
+    background:#db2777;
+}
+
+.tooth.amalgam{
+    background:#6b7280;
+}
+
+.tooth.composite{
+    background:#10b981;
+}
+
+.tooth.glass_ionomer{
+    background:#3b82f6;
+}
+/* =========================
+   WRAPPER
+========================= */
+
+.tooth-chart-wrapper{
+
+    width:100%;
+
+    overflow-x:auto;
+
+    overflow-y:hidden;
+
+    padding-bottom:10px;
+
+    -webkit-overflow-scrolling:touch;
+
+    scroll-behavior:smooth;
+}
+
+/* =========================
+   CHART
+========================= */
+
+#toothChart{
+
+    display:flex;
+    flex-direction:column;
+
+    gap:20px;
+
+    width:max-content;
+
+    min-width:100%;
+}
+
+/* =========================
+   ROW
+========================= */
+
+.teeth-row{
+
+    display:flex;
+
+    gap:8px;
+}
+
+/* =========================
+   TOOTH
+========================= */
+
+.tooth{
+
+    width:62px;
+    height:76px;
+
+    border-radius:14px;
+
+    display:flex;
+    flex-direction:column;
+
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    padding:6px;
+
+    color:white;
+
+    cursor:pointer;
+
+    transition:0.25s ease;
+
+    background:linear-gradient(135deg,#1e293b,#334155);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    flex-shrink:0;
+}
+
+/* HOVER */
+
+.tooth:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 10px 20px rgba(0,0,0,0.25);
+}
+
+/* NUMBER */
+
+.tooth-number{
+
+    font-size:16px;
+    font-weight:700;
+}
+
+/* STATUS */
+
+.tooth-status{
+
+    font-size:9px;
+
+    margin-top:4px;
+
+    line-height:1.15;
+
+    opacity:0.92;
+}
+
+
+/* =========================
+   PRIMARY TOOTH CHART
+========================= */
+
+#primaryToothChart{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:22px;
+
+    width:100%;
+}
+
+/* rows */
+
+.teeth-row{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:10px;
+
+    flex-wrap:nowrap;
+
+    width:100%;
+}
+
+/* mobile */
+
+@media(max-width:768px){
+
+    .teeth-row{
+
+        gap:6px;
+    }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px){
+
+    .tooth{
+
+        width:54px;
+        height:68px;
+    }
+
+    .tooth-number{
+
+        font-size:13px;
+    }
+
+    .tooth-status{
+
+        font-size:7px;
+    }
+}
+
+/* PRIMARY TEETH CONTAINER */
+
+#primaryUpperTeeth,
+#primaryLowerTeeth{
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:nowrap;
+
+    gap:4px;
+
+    width:100%;
+
+   
+
+    padding-bottom:8px;
+
+    scrollbar-width:thin;
+}
+
+/* TOOTH */
+
+#primaryUpperTeeth .tooth,
+#primaryLowerTeeth .tooth{
+
+    min-width:52px;
+
+    width:52px;
+
+    height:70px;
+
+    flex-shrink:0;
+
+    border-radius:14px;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    #primaryUpperTeeth .tooth,
+    #primaryLowerTeeth .tooth{
+
+        min-width:44px;
+
+        width:44px;
+
+        height:62px;
+    }
+
+    .tooth-number{
+
+        font-size:12px;
+    }
+
+    .tooth-status{
+
+        font-size:9px;
+    }
+}
+/* ONE SCROLL FOR BOTH JAWS */
+
+.primary-scroll-wrapper{
+
+    width:100%;
+
+    overflow-x:auto;
+    overflow-y:hidden;
+
+    padding-bottom:10px;
+}
+
+/* BOTH ROWS */
+
+#primaryUpperTeeth,
+#primaryLowerTeeth{
+
+    display:flex;
+
+    flex-wrap:nowrap;
+
+    justify-content:center;
+
+    gap:4px;
+
+    min-width:max-content;
+}
+
+/* SPACE BETWEEN JAWS */
+
+#primaryUpperTeeth{
+
+    margin-bottom:12px;
+}
+
+
+/* =========================
+   IMAGE VIEWER
+========================= */
+
+#imageViewer{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,0.95);
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    z-index:99999;
+
+    overflow:hidden;
+}
+
+/* IMAGE */
+
+#viewerImage{
+
+    max-width:none;
+
+    width:auto;
+    height:auto;
+
+    max-height:90vh;
+
+    cursor:grab;
+
+    transition:transform 0.08s linear;
+
+    user-select:none;
+
+    -webkit-user-drag:none;
+}
+
+/* CLOSE */
+
+#closeViewer{
+
+    position:absolute;
+
+    top:20px;
+    right:20px;
+
+    width:48px;
+    height:48px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#ef476f;
+
+    color:white;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+    z-index:1000;
+}
+
+/* BUTTONS */
+
+.viewer-btn{
+
+    position:absolute;
+
+    right:20px;
+
+    width:48px;
+    height:48px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#118ab2;
+
+    color:white;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+    z-index:1000;
+}
+
+.zoom-in{
+    top:90px;
+}
+
+.zoom-out{
+    top:150px;
+}
+
+#toothModal{
+
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,0.75);
+
+    z-index:9999;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:10px;
+}
+
+#toothOptions{
+
+    width:95vw;
+
+    max-width:1400px;
+
+    height:90vh;
+
+    background:#111827;
+
+    border-radius:24px;
+
+    padding:18px;
+
+    box-sizing:border-box;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(130px,1fr));
+
+    gap:10px;
+
+    overflow-y:auto;
+}
+
+.services-card{
+    background:#0f172a;
+    border-radius:22px;
+    padding:22px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.35);
+    overflow:hidden;
+    border:1px solid #1e293b;
+}
+
+/* حتى يصبح الجدول قابل للتمرير بالموبايل */
+.table-wrapper{
+    width:100%;
+    overflow-x:auto;
+}
+
+.services-table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:900px;
+    overflow:hidden;
+    border-radius:18px;
+}
+
+/* HEADER */
+.services-table thead{
+    background:linear-gradient(135deg,#2563eb,#1d4ed8);
+    color:white;
+}
+
+.services-table th{
+    padding:18px;
+    text-align:center;
+    font-size:17px;
+    font-weight:800;
+    border:none;
+    white-space:nowrap;
+    letter-spacing:0.4px;
+}
+
+/* ROWS */
+.services-table td{
+    padding:18px;
+    text-align:center;
+    border-bottom:1px solid #334155;
+
+    font-size:16px;
+    font-weight:700;
+
+    color:#f8fafc;
+
+    background:#1e293b;
+
+    transition:0.25s;
+}
+
+/* Hover */
+.services-table tbody tr:hover td{
+    background:#2b3b52;
+}
+
+/* Zebra Effect */
+.services-table tbody tr:nth-child(even) td{
+    background:#172131;
+}
+
+.services-table tbody tr:nth-child(even):hover td{
+    background:#2b3b52;
+}
+
+/* آخر صف */
+.services-table tbody tr:last-child td{
+    border-bottom:none;
+}
+
+/* أيقونات */
+.services-table i{
+    margin-left:7px;
+    opacity:0.95;
+}
+
+/* Scrollbar لطيف */
+.table-wrapper::-webkit-scrollbar{
+    height:10px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb{
+    background:#475569;
+    border-radius:10px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb:hover{
+    background:#64748b;
+}
+
+.table-wrapper::-webkit-scrollbar-track{
+    background:#0f172a;
+}
+
+/* Responsive */
+@media(max-width:768px){
+
+    .services-card{
+        padding:14px;
+    }
+
+    .services-table th,
+    .services-table td{
+        padding:14px;
+        font-size:14px;
+    }
+
+}
+
+.add-service-summary{
+    list-style:none;
+    cursor:pointer;
+
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+
+    padding:15px 24px;
+
+    background:linear-gradient(135deg,#10b981,#059669);
+
+    color:white;
+
+    font-size:18px;
+    font-weight:800;
+    letter-spacing:0.3px;
+
+    border-radius:16px;
+
+    box-shadow:0 10px 25px rgba(16,185,129,0.35);
+
+    transition:0.25s;
+
+    border:1px solid rgba(255,255,255,0.08);
+}
+
+/* إزالة السهم الافتراضي */
+.add-service-summary::-webkit-details-marker{
+    display:none;
+}
+
+.add-service-summary:hover{
+    transform:translateY(-3px) scale(1.01);
+
+    box-shadow:0 14px 30px rgba(16,185,129,0.45);
+}
+
+/* الأيقونة */
+.add-service-summary i{
+    font-size:20px;
+}
+
+/* عند فتح details */
+details[open] .add-service-summary{
+    border-radius:16px 16px 10px 10px;
+}
+
+.edit-summary{
+    list-style:none;
+    cursor:pointer;
+
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+
+    padding:14px 24px;
+
+    background:linear-gradient(135deg,#be0bf5,#ae07f0);
+
+    color:white;
+
+    font-size:18px;
+    font-weight:800;
+    letter-spacing:0.4px;
+
+    border-radius:16px;
+
+    box-shadow:0 10px 24px rgba(245,158,11,0.35);
+
+    transition:0.25s;
+
+    border:1px solid rgba(255,255,255,0.08);
+}
+
+/* إزالة السهم الافتراضي */
+.edit-summary::-webkit-details-marker{
+    display:none;
+}
+
+/* Hover */
+.edit-summary:hover{
+    transform:translateY(-3px);
+
+    box-shadow:0 14px 30px rgba(245,158,11,0.45);
+}
+
+/* الأيقونة */
+.edit-summary i{
+    font-size:20px;
+
+    animation:spinGear 4s linear infinite;
+}
+
+/* دوران خفيف للأيقونة */
+@keyframes spinGear{
+    from{
+        transform:rotate(0deg);
+    }
+
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+/* عند فتح details */
+details[open] .edit-summary{
+    border-radius:16px 16px 10px 10px;
+}
+
+body{
+    padding-bottom:85px;
+}
+
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:70px;
+
+    background:#0f172a;
+
+    display:flex;
+
+    align-items:center;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+    box-shadow:0 -4px 20px rgba(0,0,0,.4);
+
+    z-index:99999;
+}
+
+.nav-item{
+    flex:1;   /* 👈 أهم سطر: يجعل كل عنصر يملأ الشريط */
+    
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    text-decoration:none;
+
+    color:#94a3b8;
+
+    font-size:11px;
+
+    gap:4px;
+
+    height:100%;
+}
+
+.nav-item i{
+    font-size:20px;
+}
+
+.nav-item.active{
+    color:#38bdf8;
+}
+
+/* =====================================
+   Modern Details
+===================================== */
+
+.modern-details{
+
+    margin:25px 0;
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    background:
+    linear-gradient(
+        145deg,
+        rgba(20,28,45,.95),
+        rgba(12,18,30,.95)
+    );
+
+    box-shadow:
+    0 12px 35px rgba(0,0,0,.28);
+}
+
+/* Hide default marker */
+
+.modern-summary::-webkit-details-marker{
+    display:none;
+}
+
+.modern-summary::marker{
+    display:none;
+}
+
+/* SUMMARY */
+
+.modern-summary{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    border-radius:999px;
+
+    padding:18px 24px;
+
+    cursor:pointer;
+
+    user-select:none;
+
+    color:white;
+
+    font-size:20px;
+
+    font-weight:700;
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #4cc9f0
+    );
+
+    transition:.3s;
+}
+
+.modern-summary:hover{
+
+    filter:brightness(1.08);
+}
+
+/* LEFT */
+
+.summary-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+}
+
+.summary-left i{
+
+    font-size:24px;
+
+    color:white;
+}
+
+/* RIGHT */
+
+.summary-right{
+
+    display:flex;
+
+    align-items:center;
+}
+
+/* ARROW */
+
+.arrow{
+
+    transition:.35s;
+
+    font-size:18px;
+}
+
+/* Rotate */
+
+.modern-details[open] .arrow{
+
+    transform:rotate(180deg);
+}
+
+/* CONTENT */
+
+.details-content{
+
+    padding:25px;
+
+    animation:fadeDetails .35s ease;
+}
+
+@keyframes fadeDetails{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(-10px);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:none;
+    }
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .modern-summary{
+
+        padding:16px 18px;
+
+        font-size:17px;
+    }
+
+    .summary-left i{
+
+        font-size:20px;
+    }
+
+    .details-content{
+
+        padding:16px;
+    }
+
+}
+
+.blue-summary{
+    background:linear-gradient(135deg,#2563eb,#3b82f6);
+}
+
+.green-summary{
+    background:linear-gradient(135deg,#13aaaf,#18aa61);
+}
+
+.purple-summary{
+    color:white;
+
+        background:linear-gradient(135deg,#4d5034,#4a9deb);
+
+        box-shadow:0 8px 18px rgba(113, 72, 150, 0.35);
+
+        transition:0.3s ease;
+}
+
+.orange-summary{
+    background:linear-gradient(135deg,#ea580c,#fb923c);
+}
+
+.red-summary{
+    background:linear-gradient(135deg,#dc2626,#ef4444);
+}
+
+.cyan-summary{
+     color:white;
+
+        background:linear-gradient(135deg,#1ace29,#2daeb3);
+
+        box-shadow:0 8px 18px rgba(8, 12, 230, 0.35);
+
+        transition:0.3s ease;
+}
+
+.v-summary{
+    color:white;
+
+        background:linear-gradient(135deg,#2290c4,#2daeb3);
+
+        box-shadow:0 8px 18px rgba(123,44,191,0.35);
+
+        transition:0.3s ease;
+}
+
+.gold-summary{
+    background:linear-gradient(135deg,#ca8a04,#facc15);
+    color:#1f2937;
+}
+
+.gray-summary{
+    background:linear-gradient(135deg,#374151,#6b7280);
+}
+
+.services-title{
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+
+    margin:0 0 22px;
+
+    font-size:26px;
+    font-weight:800;
+
+    background:linear-gradient(135deg,#4cc9f0,#80ffdb);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    letter-spacing:.5px;
+}
+
+.services-title i{
+
+    font-size:24px;
+
+    color:#4cc9f0;
+
+    -webkit-text-fill-color:#4cc9f0;
+
+    filter:drop-shadow(0 0 8px rgba(76,201,240,.4));
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- FLOATING ICONS -->
+
+<i class="fa-solid fa-tooth floating-icon icon1"></i>
+<i class="fa-solid fa-heart-pulse floating-icon icon2"></i>
+<i class="fa-solid fa-user-doctor floating-icon icon3"></i>
+
+<!-- HEADER -->
+
+<div class="page-header">
+
+    <h1>
+        <i class="fa-solid fa-folder-open"></i>
+        Patient File
+    </h1>
+
+    <button onclick="goToDashboard()" class="primary-btn">
+
+        <i class="fa-solid fa-arrow-left"></i>
+        Back to Dashboard
+
+    </button>
+
+</div>
+
+<div class="container">
+
+    <!-- PATIENT INFO -->
+
+    <div class="card">
+
+        <h2>
+            <i class="fa-solid fa-user"></i>
+            Patient Information
+        </h2>
+
+        <div id="patientInfo">
+
+            Loading...
+
+        </div>
+
+<button 
+    onclick="goToEditCard()"
+    style="
+        margin-top:15px;
+
+        padding:10px 16px;
+
+        border:none;
+        border-radius:12px;
+
+        cursor:pointer;
+
+        font-weight:600;
+        color:white;
+
+        background:linear-gradient(135deg,#7b2cbf,#9d4edd);
+
+        box-shadow:0 8px 18px rgba(123,44,191,0.35);
+
+        transition:0.3s ease;
+    "
+    onmouseover="this.style.transform='translateY(-3px)'"
+    onmouseout="this.style.transform='translateY(0)'"
+>
+    <i class="fa-solid fa-pen-to-square"></i>
+    Edit Patient Info
+</button>
+
+<button 
+    onclick="goToVisitCard()"
+    style="
+        margin-top:15px;
+
+        padding:10px 16px;
+
+        border:none;
+        border-radius:12px;
+
+        cursor:pointer;
+
+        font-weight:600;
+        color:white;
+
+        background:linear-gradient(135deg,#2290c4,#2daeb3);
+
+        box-shadow:0 8px 18px rgba(123,44,191,0.35);
+
+        transition:0.3s ease;
+    "
+    onmouseover="this.style.transform='translateY(-3px)'"
+    onmouseout="this.style.transform='translateY(0)'"
+>
+     <i class="fa-solid fa-calendar-check"></i>
+    Book Visit
+</button>
+
+<button onclick="goToAddService()"  style="
+        margin-top:15px;
+
+        padding:10px 16px;
+
+        border:none;
+        border-radius:12px;
+
+        cursor:pointer;
+
+        font-weight:600;
+        color:white;
+
+        background:linear-gradient(135deg,#1ace29,#2daeb3);
+
+        box-shadow:0 8px 18px rgba(8, 12, 230, 0.35);
+
+        transition:0.3s ease;
+    "  class="btn">
+    <i class="fa-solid fa-screwdriver-wrench"></i>
+    Add Service
+</button>
+
+    </div>
+
+
+   <!-- =========================
+PATIENTT SERVICES CARD
+========================= -->
+
+<!-- =========================
+PATIENT SERVICES
+========================= -->
+
+<details id="addServiceDetails" id="addServiceCard" class="modern-details">
+
+    <summary class="modern-summary cyan-summary">
+
+        <div class="summary-left">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+            <span>Patient Services</span>
+        </div>
+
+        <div class="summary-right">
+            <i class="fa-solid fa-chevron-down arrow"></i>
+        </div>
+
+    </summary>
+
+    <div class="details-content">
+
+        <div id="addServiceCard" class="card">
+
+            <details>
+
+                <summary class="add-service-summary">
+
+                    <i class="fa-solid fa-circle-plus"></i>
+
+                    Add Service • اضغط لاضافة خدمة 
+
+                </summary>
+
+                <input
+                    type="text"
+                    id="serviceName"
+                    placeholder="اسم الخدمة">
+
+                <input
+                    type="number"
+                    id="serviceTotal"
+                    placeholder="المبلغ المستحق">
+
+                <input
+                    type="number"
+                    id="servicePaid"
+                    placeholder="المبلغ المدفوع">
+
+                <input
+                    type="number"
+                    id="serviceRemain"
+                    placeholder="المبلغ المتبقي"
+                    readonly>
+
+                <button onclick="savePatienttService()">
+                    حفظ الخدمة
+                </button>
+
+            </details>
+
+            <div class="card services-card" style="margin-top:20px;">
+
+                <div class="table-wrapper">
+
+                    <h2 class="services-title">
+    <i class="fa-solid fa-list-check"></i>
+    الخدمات المسجلة
+</h2>
+
+                    <table class="services-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th><i class="fa-solid fa-tooth"></i> اسم الخدمة</th>
+
+                                <th><i class="fa-solid fa-money-bill"></i> المستحق</th>
+
+                                <th><i class="fa-solid fa-wallet"></i> المدفوع</th>
+
+                                <th><i class="fa-solid fa-clock"></i> المتبقي</th>
+
+                                <th><i class="fa-solid fa-calendar"></i> التاريخ</th>
+
+                                <th><i class="fa-solid fa-gear"></i> إجراءات</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="patienttServicesList"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</details>
+
+
+<!-- =========================
+VISIT
+========================= -->
+
+<details id="visitDetails" id="VisitCard" class="modern-details">
+
+    <summary class="modern-summary v-summary">
+
+        <div class="summary-left">
+
+            <i class="fa-solid fa-calendar-check"></i>
+
+            <span>Book Visit</span>
+
+        </div>
+
+        <div class="summary-right">
+
+            <i class="fa-solid fa-chevron-down arrow"></i>
+
+        </div>
+
+    </summary>
+
+    <div class="details-content">
+
+        <div id="VisitCard" class="card">
+
+            <div hidden>
+
+                <label>Visit Date</label>
+
+                <input type="datetime-local" id="visitDate">
+
+                <br><br>
+
+                <label>Treatment Notes</label>
+
+                <textarea
+                    id="treatmentNotes"
+                    placeholder="Treatment Notes"></textarea>
+
+            </div>
+
+            <label>
+                Next Appointment حدد موعد الزيارة بالتاريخ والساعة
+            </label>
+
+            <input
+                type="datetime-local"
+                id="nextAppointment">
+
+            <br><br>
+
+            <button onclick="saveVisit()" class="green-btn">
+
+                <i class="fa-solid fa-calendar-plus"></i>
+
+                Save Visit
+
+            </button>
+
+        </div>
+
+    </div>
+
+</details>
+
+
+    
+
+
+<details class="modern-details">
+
+    <summary class="modern-summary green-summary">
+
+        <div class="summary-left">
+            <i class="fa-solid fa-folder-open"></i>
+            <span>Patient Records</span>
+        </div>
+
+        <div class="summary-right">
+            <i class="fa-solid fa-chevron-down arrow"></i>
+        </div>
+
+    </summary>
+
+    <div class="details-content">
+
+       <h2>
+        <i class="fa-solid fa-folder-open"></i>
+        Patient Records
+    </h2>
+
+    <!-- IMAGES -->
+
+<div class="card">
+
+    <div style="
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:15px;
+    margin-bottom:25px;
+    ">
+
+        <h2 style="margin:0;">
+            <i class="fa-solid fa-images"></i>
+            Patient Images (Before)
+        </h2>
+
+        <!-- ACTIONS -->
+
+        <div style="
+        display:flex;
+        gap:12px;
+        flex-wrap:wrap;
+        ">
+
+            <!-- CLINICAL -->
+
+            <label class="upload-btn">
+
+                <i class="fa-solid fa-camera"></i>
+
+                Upload Clinical Image
+
+                <input 
+                    type="file"
+                    id="clinicalImage"
+                    hidden
+                    onchange="uploadClinicalImage()"
+                >
+
+            </label>
+
+            <!-- XRAY -->
+
+            <label class="upload-btn xray-btn">
+
+                <i class="fa-solid fa-x-ray"></i>
+
+                Upload X-Ray
+
+                <input 
+                    type="file"
+                    id="xrayImage"
+                    hidden
+                    onchange="uploadXray()"
+                >
+
+            </label>
+
+        </div>
+
+    </div>
+
+    <!-- IMAGES CONTAINER -->
+
+    <div id="imagesContainer" style="
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+    ">
+
+    </div>
+
+</div>
+
+<!-- image container after  -->
+<!-- AFTER IMAGES -->
+
+<div class="card">
+
+    <div style="
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        margin-bottom:20px;
+        flex-wrap:wrap;
+        gap:15px;
+    ">
+
+        <h2 style="color:#80ffdb;">
+
+            <i class="fa-solid fa-images"></i>
+
+             Patient Images (After)
+
+        </h2>
+
+        <!-- UPLOAD BUTTON -->
+
+        <div style="
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+">
+
+    <!-- CLINICAL -->
+
+    <label class="upload-btn">
+
+        <i class="fa-solid fa-camera"></i>
+
+       Upload Clinical image
+
+        <input 
+            type="file"
+            hidden
+            accept="image/*"
+            onchange="uploadFile(this.id,'clinical_after')"
+            id="clinicalAfterInput"
+        >
+
+    </label>
+
+    <!-- XRAY -->
+
+    <label class="upload-btn xray-btn">
+
+        <i class="fa-solid fa-x-ray"></i>
+
+        Upload X-Ray 
+
+        <input 
+            type="file"
+            hidden
+            accept="image/*"
+            onchange="uploadFile(this.id,'xray_after')"
+            id="xrayAfterInput"
+        >
+
+    </label>
+
+</div>
+
+    </div>
+
+    <!-- CONTAINER -->
+
+    <div id="afterImagesContainer"
+    class="images-grid"></div>
+
+</div>
+
+
+<!-- MEDICAL FILES -->
+
+<div class="card">
+
+    
+
+    <h2>
+        <i class="fa-solid fa-folder-open"></i>
+        Patient Files
+    </h2>
+
+    <div id="medicalFilesContainer" style="
+        display:flex;
+        flex-wrap:wrap;
+        gap:20px;
+    ">
+
+    </div>
+
+    <!-- dicom  -->
+
+<label class="upload-btn">
+
+    <i class="fa-solid fa-cube"></i>
+
+    Upload DICOM
+
+    <input 
+        type="file"
+        hidden
+        accept=".dcm"
+        onchange="uploadDicom(this)"
+    >
+
+</label>
+
+<!-- obj  -->
+ <label class="upload-btn">
+
+    <i class="fa-solid fa-cube"></i>
+
+    Upload OBJ
+
+    <input 
+        type="file"
+        hidden
+        accept=".obj"
+        onchange="uploadOBJ(this)"
+    >
+
+</label>
+
+<!-- ply  -->
+ <label class="upload-btn">
+
+    <i class="fa-solid fa-shapes"></i>
+
+    Upload PLY
+
+    <input 
+        type="file"
+        hidden
+        accept=".ply"
+        onchange="uploadPLY(this)"
+    >
+
+</label>
+
+<!-- pdf  -->
+ <label class="upload-btn">
+
+    <i class="fa-solid fa-file-pdf"></i>
+
+    Upload PDF
+
+    <input 
+        type="file"
+        hidden
+        accept=".pdf"
+        onchange="uploadPDF(this)"
+    >
+
+</label>
+<!-- html  -->
+ <label class="upload-btn">
+
+    <i class="fa-solid fa-code"></i>
+
+    Upload HTML
+
+    <input 
+        type="file"
+        hidden
+        accept=".html"
+        onchange="uploadHTML(this)"
+    >
+
+</label>
+
+</div>
+    </div>
+
+</details>
+  
+
+
+<sp></sp>
+
+<!-- TOOTH CHART -->
+
+<details class="modern-details">
+
+    <summary class="modern-summary purple-summary">
+
+        <div class="summary-left">
+
+            <i class="fa-solid fa-tooth"></i>
+
+            <span>Tooth Charts</span>
+
+        </div>
+
+        <div class="summary-right">
+
+            <i class="fa-solid fa-chevron-down arrow"></i>
+
+        </div>
+
+    </summary>
+
+    <div class="details-content">
+
+        <!-- =========================
+             PERMANENT TEETH
+        ========================= -->
+
+        <div class="card">
+
+            <h2 style="
+                color:#80ffdb;
+                margin-bottom:25px;
+            ">
+
+                <i class="fa-solid fa-tooth"></i>
+
+                Tooth Chart
+
+            </h2>
+
+            <div class="tooth-chart-wrapper">
+
+                <div id="toothChart">
+
+                    <div id="upperTeeth" class="teeth-row"></div>
+
+                    <div id="lowerTeeth" class="teeth-row"></div>
+
+                </div>
+
+            </div>
+
+            <h6>
+                عند الضغط على رقم السن تفتح نافذة، اختر منها حالة السن.
+            </h6>
+
+        </div>
+
+        <!-- =========================
+             PRIMARY TEETH
+        ========================= -->
+
+        <div id="primaryChartCard" style="display:none; margin-top:20px;">
+
+            <div class="card">
+
+                <h3>
+
+                    <i class="fa-solid fa-child"></i>
+
+                    Primary Tooth Chart
+
+                </h3>
+
+                <div class="tooth-chart-wrapper">
+
+                    <div class="primary-scroll-wrapper">
+
+                        <div id="primaryUpperTeeth"></div>
+
+                        <div id="primaryLowerTeeth"></div>
+
+                    </div>
+
+                </div>
+
+                <h6>
+                    تظهر تلقائيًا عندما يكون عمر المريض أقل من 13 سنة.
+                </h6>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</details>
+
+<!-- SERVICES PERFORMED -->
+
+<details class="modern-details">
+
+    <summary class="modern-summary blue-summary">
+
+        <div class="summary-left">
+
+            <i class="fa-solid fa-notes-medical"></i>
+
+            <span>Services & Treatment Notes</span>
+
+        </div>
+
+        <div class="summary-right">
+
+            <i class="fa-solid fa-chevron-down arrow"></i>
+
+        </div>
+
+    </summary>
+
+    <div class="details-content">
+
+        <!-- =========================
+             SERVICES
+        ========================= -->
+
+        <div class="card">
+
+            <h2 style="
+                color:#80ffdb;
+                margin-bottom:20px;
+            ">
+
+                <i class="fa-solid fa-tooth"></i>
+
+                Services Performed
+
+            </h2>
+
+            <div id="servicesContainer"
+            style="
+                display:flex;
+                flex-wrap:wrap;
+                gap:14px;
+            "></div>
+
+            <h6>
+                عند الضغط على الخدمة تتحول إلى اللون الأخضر للدلالة على تقديمها للمريض.
+            </h6>
+
+        </div>
+
+        <!-- =========================
+             TREATMENT NOTES
+        ========================= -->
+
+        <div class="card" style="margin-top:20px;">
+
+            <h2>
+
+                <i class="fa-solid fa-notes-medical"></i>
+
+                Treatment Notes
+
+            </h2>
+
+            <textarea
+                id="treatmentNote"
+                placeholder="Write treatment notes..."
+            ></textarea>
+
+            <button onclick="saveNote()" class="green-btn">
+
+                <i class="fa-solid fa-floppy-disk"></i>
+
+                Save Note
+
+            </button>
+
+            <div id="notesContainer"></div>
+
+        </div>
+
+    </div>
+
+</details>
+
+    
+
+   
+
+
+
+
+    <!-- EDIT -->
+
+    <div id="editCard" class="card">
+
+        <h2>
+            <i class="fa-solid fa-pen-to-square"></i>
+            Edit / Delete patient file
+        </h2>
+
+        <details id="editDetails">
+
+           <summary class="edit-summary">
+    <i class="fa-solid fa-gear"></i>
+     Edit / Delete patient file
+</summary>
+
+            <input id="name" placeholder="Full Name">
+
+            <input id="phone" placeholder="Phone">
+
+            <input id="address" placeholder="Address">
+
+            <input id="gender" placeholder="Gender">
+
+            <input id="birth_date" type="date">
+
+            <input hidden id="visit_date" type="date">
+
+            <textarea 
+                id="medical_history" 
+                placeholder="Medical History"
+            ></textarea>
+
+            <textarea 
+                id="dental_history" 
+                placeholder="Dental History"
+            ></textarea>
+
+           
+
+            <button onclick="saveEdit()" class="green-btn">
+
+                <i class="fa-solid fa-floppy-disk"></i>
+                Save Changes
+
+            </button>
+
+            <button  onclick="deletePatient()" class="red-btn">
+
+                <i class="fa-solid fa-trash"></i>
+                Delete Patient
+
+            </button>
+
+        </details>
+
+    </div>
+
+</div>
+
+<!-- SUPABASE -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="js/supabase.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/files.js"></script>
+<script src="js/dashboard.js"></script>
+
+<div id="imageModal" class="image-modal" onclick="closeImageViewer(event)">
+
+    <img id="modalImage">
+
+</div>
+
+<div id="toast" class="toast"></div>
+
+<!--chart -->
+<div id="toothModal" style="
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+
+    display:none;
+    align-items:center;
+    justify-content:center;
+
+    z-index:9999;
+">
+
+    <div style="
+        background:#0f172a;
+        padding:20px;
+        border-radius:18px;
+
+        width:300px;
+
+        display:flex;
+        flex-wrap:wrap;
+        gap:10px;
+    ">
+
+        <h3 style="width:100%;color:#80ffdb;margin-bottom:10px;">
+            Select Tooth Status
+        </h3>
+
+        <div id="toothOptions"
+        style="
+            display:flex;
+            flex-wrap:wrap;
+            gap:8px;
+        "></div>
+
+    </div>
+
+</div>
+
+<!-- =========================
+     IMAGE VIEWER
+========================= -->
+
+<div id="imageViewer">
+
+    <!-- CLOSE -->
+
+    <button id="closeViewer"
+        onclick="closeImageViewer()">
+
+        <i class="fa-solid fa-xmark"></i>
+
+    </button>
+
+    <!-- ZOOM IN -->
+
+    <button class="viewer-btn zoom-in"
+        onclick="zoomIn()">
+
+        <i class="fa-solid fa-plus"></i>
+
+    </button>
+
+    <!-- ZOOM OUT -->
+
+    <button class="viewer-btn zoom-out"
+        onclick="zoomOut()">
+
+        <i class="fa-solid fa-minus"></i>
+
+    </button>
+
+    <!-- IMAGE -->
+
+    <img id="viewerImage">
+
+</div>
+<!-- شريط تنقل سفلي  -->
+<div class="bottom-nav">
+
+    <a href="dashboard.html" class="nav-item active">
+        <i class="fa-solid fa-house"></i>
+        <span>الرئيسية</span>
+    </a>
+
+    <a href="dashboard.html#appointmentssContainer" class="nav-item">
+    <i class="fa-solid fa-calendar-check"></i>
+    <span>الزيارات</span>
+</a>
+
+    <a href="patients.html" class="nav-item">
+        <i class="fa-solid fa-user-plus"></i>
+        <span>اضافة مريض</span>
+    </a>
+
+<a href="dashboard.html#patientsSection" class="nav-item">
+        <i class="fa-solid fa-users"></i>
+        <span>ملفات المرضى</span>
+    </a>
+
+   
+
+    <a href="Bill.html" class="nav-item">
+        <i class="fa-solid fa-file-invoice-dollar"></i>
+        <span>الفواتير</span>
+    </a>
+
+    <a href="labs.html" class="nav-item">
+       <i class="fa-solid fa-screwdriver-wrench"></i>
+        <span>المعامل</span>
+    </a>
+
+    <a href="doctors.html" class="nav-item">
+        <i class="fa-solid fa-user-doctor"></i>
+        <span>الأطباء</span>
+    </a>
+
+<a href="prints.html" class="nav-item">
+       <i class="fa-solid fa-file-prescription"></i>
+        <span>المطبوعات</span>
+    </a>
+
+ <a href="dashboard.html#analyticsSection" class="nav-item">
+        <i class="fa-solid fa-chart-line"></i>
+        <span>التقارير</span>
+    </a>
+
+<a href="pricing.html" class="nav-item">
+        <i class="fa-solid fa-tags"></i>
+        <span>التسعير</span>
+    </a>
+
+ <a href="dose-calculator.html" class="nav-item">
+    <i class="fa-solid fa-pills"></i>
+    <span>حاسبة الجرعات</span>
+</a>
+
+
+</div>
+</body>
+</html>

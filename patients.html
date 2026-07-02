@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patients</title>
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Segoe UI',sans-serif;
+        }
+
+        body{
+
+            background:
+            radial-gradient(circle at top left, #1d3557 0%, transparent 25%),
+            radial-gradient(circle at bottom right, #2a9d8f 0%, transparent 25%),
+            #0b1120;
+
+            min-height:100vh;
+
+            display:flex;
+            justify-content:center;
+            align-items:center;
+
+            padding:30px;
+
+            color:white;
+            overflow-x:hidden;
+        }
+
+        .container{
+            width:100%;
+            max-width:850px;
+            position:relative;
+            z-index:2;
+        }
+
+        /* CARD */
+
+        .card{
+
+            background:rgba(255,255,255,0.05);
+            backdrop-filter:blur(14px);
+
+            border:1px solid rgba(255,255,255,0.08);
+
+            border-radius:28px;
+
+            padding:35px;
+
+            box-shadow:
+            0 10px 40px rgba(0,0,0,0.4);
+
+            animation:fadeUp 0.7s ease;
+        }
+
+        @keyframes fadeUp{
+
+            from{
+                opacity:0;
+                transform:translateY(30px);
+            }
+
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+
+        }
+
+        /*======================================
+            TITLE
+======================================*/
+
+h2{
+
+    position:relative;
+
+    display:flex;
+    align-items:center;
+
+    gap:18px;
+
+    font-size:38px;
+
+    font-weight:700;
+
+    margin-bottom:40px;
+
+    color:white;
+
+}
+
+
+
+
+
+h2::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:88px;
+    bottom:-12px;
+
+    width:130px;
+    height:4px;
+
+    border-radius:20px;
+
+    background:
+
+    linear-gradient(to right,#38bdf8,#10b981);
+
+}
+
+        /* FORM */
+
+        form{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:20px;
+        }
+
+        input,
+        select,
+        textarea{
+
+            width:100%;
+
+            padding:16px;
+
+            border:none;
+            outline:none;
+
+            border-radius:16px;
+
+            background:#101826;
+
+            color:white;
+
+            font-size:15px;
+
+            transition:0.3s;
+        }
+
+        textarea{
+            min-height:130px;
+            resize:vertical;
+        }
+
+        textarea,
+        .full{
+            grid-column:1 / -1;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus{
+
+            box-shadow:
+            0 0 0 3px rgba(72,202,228,0.35);
+
+            transform:translateY(-2px);
+        }
+
+        input::placeholder,
+        textarea::placeholder{
+            color:#94a3b8;
+        }
+
+        select{
+            cursor:pointer;
+        }
+
+        /* BUTTONS */
+
+        .buttons{
+
+            margin-top:30px;
+
+            display:flex;
+            gap:15px;
+            flex-wrap:wrap;
+        }
+
+        button{
+
+            border:none;
+            padding:15px 24px;
+
+            border-radius:16px;
+
+            cursor:pointer;
+
+            font-size:15px;
+            font-weight:600;
+
+            transition:0.3s ease;
+
+            position:relative;
+            overflow:hidden;
+        }
+
+        button::before{
+
+            content:'';
+
+            position:absolute;
+
+            width:100%;
+            height:100%;
+
+            top:0;
+            left:-100%;
+
+            background:rgba(255,255,255,0.15);
+
+            transition:0.5s;
+        }
+
+        button:hover::before{
+            left:100%;
+        }
+
+        button:hover{
+            transform:translateY(-3px) scale(1.03);
+        }
+
+        .save-btn{
+
+            background:linear-gradient(135deg,#00b4d8,#48cae4);
+
+            color:white;
+
+            box-shadow:
+            0 8px 20px rgba(0,180,216,0.35);
+        }
+
+        .dashboard-btn{
+
+            background:linear-gradient(135deg,#8338ec,#c77dff);
+
+            color:white;
+
+            box-shadow:
+            0 8px 20px rgba(131,56,236,0.35);
+        }
+
+        /* FLOATING ICONS */
+
+        .floating-icon{
+
+            position:fixed;
+
+            color:rgba(255,255,255,0.07);
+
+            font-size:45px;
+
+            animation:float 6s ease-in-out infinite;
+
+            pointer-events:none;
+        }
+
+        .icon1{
+            top:10%;
+            left:5%;
+        }
+
+        .icon2{
+            bottom:12%;
+            right:7%;
+            animation-delay:2s;
+        }
+
+        .icon3{
+            top:50%;
+            right:15%;
+            animation-delay:1s;
+        }
+
+        @keyframes float{
+
+            0%{
+                transform:translateY(0px) rotate(0deg);
+            }
+
+            50%{
+                transform:translateY(-18px) rotate(8deg);
+            }
+
+            100%{
+                transform:translateY(0px) rotate(0deg);
+            }
+
+        }
+
+        /* MOBILE */
+
+        @media(max-width:768px){
+
+            form{
+                grid-template-columns:1fr;
+            }
+
+            textarea,
+            .full{
+                grid-column:auto;
+            }
+
+            h2{
+                font-size:28px;
+            }
+
+            .card{
+                padding:25px;
+            }
+
+            .buttons{
+                flex-direction:column;
+            }
+
+            button{
+                width:100%;
+            }
+
+        }
+
+/* toast */
+.toast {
+    position: fixed;
+    bottom: 90px; /* رفعه فوق شريط التنقل السفلي */
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+
+    background: #1f2937;
+    color: white;
+
+    padding: 14px 20px;
+    border-radius: 12px;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: all 0.4s ease;
+
+    z-index: 99999; /* أعلى من أي bottom nav */
+    max-width: 90%;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* show state */
+.toast.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+body{
+    padding-bottom:85px;
+}
+
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:70px;
+
+    background:#0f172a;
+
+    display:flex;
+
+    align-items:center;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+    box-shadow:0 -4px 20px rgba(0,0,0,.4);
+
+    z-index:99999;
+}
+
+.nav-item{
+    flex:1;   /* 👈 أهم سطر: يجعل كل عنصر يملأ الشريط */
+    
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    text-decoration:none;
+
+    color:#94a3b8;
+
+    font-size:11px;
+
+    gap:4px;
+
+    height:100%;
+}
+
+.nav-item i{
+    font-size:20px;
+}
+
+.nav-item.active{
+    color:#38bdf8;
+}
+    </style>
+
+</head>
+
+<body>
+
+    <!-- FLOATING ICONS -->
+
+    <i class="fa-solid fa-tooth floating-icon icon1"></i>
+    <i class="fa-solid fa-user-doctor floating-icon icon2"></i>
+    <i class="fa-solid fa-heart-pulse floating-icon icon3"></i>
+
+<div class="container">
+
+     <h2>
+            <i class="fa-solid fa-user-plus"></i>
+            Add Patient
+        </h2>
+
+    <div class="card">
+
+       
+
+        <form id="patientForm">
+
+            <input 
+                type="text" 
+                id="name" 
+                placeholder="👤 Patient Name"
+            >
+
+            <input 
+                type="text" 
+                id="phone" 
+                placeholder="📞 Phone"
+            >
+
+            <select id="gender">
+                <option>Male</option>
+                <option>Female</option>
+            </select>
+
+            <input 
+                type="text" 
+                id="address" 
+                placeholder="📍 Address"
+            >
+            
+            <div>
+<h4>  Birth Date </h4>
+
+            <input 
+                type="date" 
+                id="birth"
+                placeholder="Birth Date"
+            >
+
+            </div>
+
+
+            <textarea 
+                id="medical" 
+                placeholder="🩺 Medical History"
+            ></textarea>
+
+            <textarea 
+                id="dental" 
+                placeholder="🦷 Dental History"
+            ></textarea>
+
+            
+   
+
+        </form>
+
+        <div class="buttons">
+
+            <button onclick="savePatient()" class="save-btn">
+
+                <i class="fa-solid fa-floppy-disk"></i>
+                Save Patient
+
+            </button>
+
+            <button onclick="goToDashboard()" class="dashboard-btn">
+
+                <i class="fa-solid fa-arrow-left"></i>
+                Dashboard
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- شريط تنقل سفلي  -->
+<div class="bottom-nav">
+
+    <a href="dashboard.html" class="nav-item">
+        <i class="fa-solid fa-house"></i>
+        <span>الرئيسية</span>
+    </a>
+
+<a href="dashboard.html#appointmentssContainer" class="nav-item">
+    <i class="fa-solid fa-calendar-check"></i>
+    <span>الزيارات</span>
+</a>
+
+    <a href="patients.html" class="nav-item active">
+        <i class="fa-solid fa-user-plus"></i>
+        <span>اضافة مريض</span>
+    </a>
+
+<a href="dashboard.html#patientsSection" class="nav-item">
+        <i class="fa-solid fa-users"></i>
+        <span>ملفات المرضى</span>
+    </a>
+
+    
+
+    <a href="Bill.html" class="nav-item">
+        <i class="fa-solid fa-file-invoice-dollar"></i>
+        <span>الفواتير</span>
+    </a>
+
+    <a href="labs.html" class="nav-item">
+      <i class="fa-solid fa-screwdriver-wrench"></i>
+        <span>المعامل</span>
+    </a>
+
+    <a href="doctors.html" class="nav-item">
+        <i class="fa-solid fa-user-doctor"></i>
+        <span>الأطباء</span>
+    </a>
+
+    <a href="prints.html" class="nav-item">
+       <i class="fa-solid fa-file-prescription"></i>
+        <span>المطبوعات</span>
+    </a>
+
+ <a href="dashboard.html#analyticsSection" class="nav-item">
+        <i class="fa-solid fa-chart-line"></i>
+        <span>التقارير</span>
+    </a>
+
+    <a href="pricing.html" class="nav-item">
+        <i class="fa-solid fa-tags"></i>
+        <span>التسعير</span>
+    </a>
+
+ <a href="dose-calculator.html" class="nav-item">
+    <i class="fa-solid fa-pills"></i>
+    <span>حاسبة الجرعات</span>
+</a>
+
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+<script src="js/supabase.js"></script>
+<script src="js/patients.js"></script>
+
+<!-- toast  -->
+ <div id="toast" class="toast"></div>
+
+</body>
+</html>
